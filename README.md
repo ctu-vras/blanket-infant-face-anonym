@@ -60,7 +60,7 @@ pip install -r requirements.txt
 * [Stable Diffusion checkpoint](https://huggingface.co/SG161222/Realistic_Vision_V2.0)
 * [FaceFusion](https://github.com/facefusion/facefusion)
 
-## 🎬 Demo
+## 🎮 Demo
 <span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>
 
 Run anonymization on a sample video:

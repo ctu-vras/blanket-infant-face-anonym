@@ -26,6 +26,7 @@
 [![Paper and Supplementary](https://img.shields.io/badge/Paper%20+%20Supplementary-arXiv-red)](resources/BLANKET.pdf) &nbsp;&nbsp;&nbsp;
 [![License](https://img.shields.io/badge/License-GPL%203.0-green.svg)](LICENSE)
 
+<span style="color:tomato; font-weight:bold">MP: I Used GPL-3.0 license which I use for all my code. Let me know if you want to use different one.</span>
 </div>
 
 ## 📋 Overview

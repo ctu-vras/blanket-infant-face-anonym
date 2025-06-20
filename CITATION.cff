@@ -1,7 +1,24 @@
+# CITATION.cff file for BLANKET: Anonymizing Faces in Infant Video Recordings
+# This file provides metadata for the software and its preferred citation format.
 cff-version: 1.2.0
-message: "If you use this work, please cite the paper."
-title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
+message: "If you use this software, please cite it as below."
 authors:
+- family-names: Hadera
+  given-names: Ditmar
+- family-names: Cech
+  given-names: Jan
+- family-names: Purkrabek
+  given-names: Miroslav
+- family-names: Hoffmann
+  given-names: Matej
+title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2025-06-20
+url: "https://github.com/ctu-vras/blanket-infant-face-anonym"
+preferred-citation:
+  type: conference-paper
+  authors:
   - family-names: Hadera
     given-names: Ditmar
   - family-names: Cech
@@ -10,17 +27,12 @@ authors:
     given-names: Miroslav
   - family-names: Hoffmann
     given-names: Matej
-doi: "10.1000/icdl2025.blanket" # replace with the actual DOI if available
-identifiers:
-  - type: arxiv
-    value: "2309.12345" # replace with the actual arXiv ID
-  - type: isbn
-    value: "978-3-16-148410-0" # replace with the actual ISBN if available
-url: "https://2025.icdl.org/papers/blanket.pdf"
-type: article
-date-released: 2025-06-20   # or the official publication date
-keywords:
-  - face anonymization
-  - infant video
-  - diffusion inpainting
-  - temporal consistency
+  doi: "10.0000/00000"
+  journal: "Journal Title"
+  month: 9
+  start: 1 # First page number
+  end: 8 # Last page number
+  title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
+  issue: 1
+  volume: 1
+  year: 2021

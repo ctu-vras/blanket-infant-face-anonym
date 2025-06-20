@@ -13,9 +13,7 @@ authors:
   given-names: Matej
 title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
 version: 1.0.0
-doi: 10.5281/zenodo.1234
 date-released: 2025-06-20
-url: "https://github.com/ctu-vras/blanket-infant-face-anonym"
 preferred-citation:
   type: conference-paper
   authors:
@@ -27,12 +25,9 @@ preferred-citation:
     given-names: Miroslav
   - family-names: Hoffmann
     given-names: Matej
-  doi: "10.0000/00000"
-  journal: "Journal Title"
+  collection-title: "2025 IEEE International Conference on Development and Learning (ICDL)"
   month: 9
   start: 1 # First page number
   end: 8 # Last page number
   title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
-  issue: 1
-  volume: 1
-  year: 2021
+  year: 2025

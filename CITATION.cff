@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper."
+title: "BLANKET: Anonymizing Faces in Infant Video Recordings"
+authors:
+  - family-names: Hadera
+    given-names: Ditmar
+  - family-names: Cech
+    given-names: Jan
+  - family-names: Purkrabek
+    given-names: Miroslav
+  - family-names: Hoffmann
+    given-names: Matej
+doi: "10.1000/icdl2025.blanket" # replace with the actual DOI if available
+identifiers:
+  - type: arxiv
+    value: "2309.12345" # replace with the actual arXiv ID
+  - type: isbn
+    value: "978-3-16-148410-0" # replace with the actual ISBN if available
+url: "https://2025.icdl.org/papers/blanket.pdf"
+type: article
+date-released: 2025-06-20   # or the official publication date
+keywords:
+  - face anonymization
+  - infant video
+  - diffusion inpainting
+  - temporal consistency

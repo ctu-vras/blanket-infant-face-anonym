@@ -21,7 +21,7 @@
 
 ![BLANKET video](resources/BLANKET_video.gif)
 
-<a href="[url](https://cmp.felk.cvut.cz/~cechj/video/icdl-2025/BLANKET_video.mp4)">click here for full video</a>
+[click here for full video](https://cmp.felk.cvut.cz/~cechj/video/icdl-2025/BLANKET_video.mp4)
 
 [![ICDL 2025](https://img.shields.io/badge/Accepted%20to-ICDL%202025-blue)](https://icdl2025.fel.cvut.cz) &nbsp;&nbsp;&nbsp;
 [![Paper and Supplementary](https://img.shields.io/badge/Paper%20+%20Supplementary-arXiv-red)](resources/BLANKET.pdf) &nbsp;&nbsp;&nbsp;

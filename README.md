@@ -19,7 +19,7 @@
 
 <div align="center">
 
-![BLANKET video](resources/BLANKET_video.gif)
+![BLANKET video](https://cmp.felk.cvut.cz/~cechj/video/icdl-2025/BLANKET_video.gif)
 
 [click here for full video](https://cmp.felk.cvut.cz/~cechj/video/icdl-2025/BLANKET_video.mp4)
 

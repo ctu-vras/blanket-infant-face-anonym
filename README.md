@@ -116,15 +116,13 @@ Thanks to Max Familly Fun for the banner picture.
 If you use BLANKET, please cite:
 
 ```bibtex
-@INPROCEEDINGS{hadera2025BLANKET,
-  author={Hadera, Ditmar and Cech, Jan and Purkrabek, Miroslav and Hoffmann, Matej},
-  title={{BLANKET}: Anonymizing Faces in Infant Video Recordings},
-  booktitle={2025 IEEE International Conference on Development and Learning (ICDL)}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={1-8},
-  keywords={?????},
-  doi={????}}
+@inproceedings{hadera2025BLANKET,
+  author = {Hadera, Ditmar and Cech, Jan and Purkrabek, Miroslav and Hoffmann, Matej},
+  booktitle = {2025 IEEE International Conference on Development and Learning (ICDL)},
+  month = sep,
+  pages = {1--8},
+  title = {{BLANKET: Anonymizing Faces in Infant Video Recordings}},
+  year = {2025}
+}
 ```
 

@@ -1,4 +1,0 @@
-model: insightface
-blend_mode: softlight
-use_mask: true
-source_alignment: true

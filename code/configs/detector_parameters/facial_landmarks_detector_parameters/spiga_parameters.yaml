@@ -1,0 +1,16 @@
+module_name: "spiga"
+
+total_landmarks: 98
+
+detects_orientation: true
+detects_pupils: true
+
+model_name: "wflw"
+model_path: ""
+
+minimum_confidence: 0.3
+
+left_eye_lrtb_landmarks_indices: [68, 72, 70, 74]
+right_eye_lrtb_landmarks_indices: [60, 64, 62, 66]
+mouth_lrtb_landmarks_indices: [88, 92, 90, 94]
+pupils_lr_landmarks_indices: [97, 96]

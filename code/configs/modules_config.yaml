@@ -1,0 +1,5 @@
+identity_encoder_name: "arcface"
+
+# detectors
+face_detector_name: "yolo"
+facial_landmarks_detector_name: "spiga"

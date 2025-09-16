@@ -20,57 +20,95 @@ class FaceDetection:
     landmarks: Optional[FacialLandmarksDetection] = None
 
     def __post_init__(self):
+        """
+        Round bounding box coordinates to int32 after initialization.
+        """
         self.left_top_right_bottom = np.round(self.left_top_right_bottom).astype(np.int32)
 
     @staticmethod
     def from_left_top_width_height(
         left_top_width_height: np.ndarray, confidence: Optional[int] = None
     ) -> FaceDetection:
+        """
+        Create FaceDetection from left, top, width, height format.
+        Args:
+            left_top_width_height (np.ndarray): [left, top, width, height]
+            confidence (Optional[int]): Detection confidence
+        Returns:
+            FaceDetection: Detection object
+        """
         return FaceDetection(
             left_top_width_height + np.asarray([0, 0, left_top_width_height[0], left_top_width_height[1]]), confidence
         )
 
     @property
     def left_top_width_height(self) -> np.ndarray:
+        """
+        Get bounding box in left, top, width, height format.
+        Returns:
+            np.ndarray: [left, top, width, height]
+        """
         return self.left_top_right_bottom - np.asarray([0, 0, self.left, self.top])
 
     @property
     def left(self) -> int:
+        """Get left coordinate of bounding box."""
         return int(self.left_top_right_bottom[0])
 
     @property
     def top(self) -> int:
+        """Get top coordinate of bounding box."""
         return int(self.left_top_right_bottom[1])
 
     @property
     def right(self) -> int:
+        """Get right coordinate of bounding box."""
         return int(self.left_top_right_bottom[2])
 
     @property
     def bottom(self) -> int:
+        """Get bottom coordinate of bounding box."""
         return int(self.left_top_right_bottom[3])
 
     @property
     def width(self) -> int:
+        """Get width of bounding box."""
         return int(self.left_top_right_bottom[2] - self.left_top_right_bottom[0])
 
     @property
     def height(self) -> int:
+        """Get height of bounding box."""
         return int(self.left_top_right_bottom[3] - self.left_top_right_bottom[1])
 
     @property
     def area(self) -> int:
-        """Compute the area of the bounding box."""
+        """
+        Compute the area of the bounding box.
+        Returns:
+            int: Area in pixels
+        """
         width, height = self.left_top_right_bottom[2:] - self.left_top_right_bottom[:2]
         return int(width * height)
 
     @property
     def center(self) -> np.ndarray:
+        """
+        Get center coordinates of bounding box.
+        Returns:
+            np.ndarray: [x, y] center
+        """
         return (self.left_top_right_bottom[:2] + self.left_top_right_bottom[2:]) // 2
 
     @staticmethod
     def intersection_over_union(first_detection: FaceDetection, second_detection: FaceDetection) -> float:
-        """Compute Intersection over Union (IoU) of two bounding boxes."""
+        """
+        Compute Intersection over Union (IoU) of two bounding boxes.
+        Args:
+            first_detection (FaceDetection): First bounding box
+            second_detection (FaceDetection): Second bounding box
+        Returns:
+            float: IoU value
+        """
         intersection_left_top = np.maximum(
             first_detection.left_top_right_bottom[:2], second_detection.left_top_right_bottom[:2]
         )
@@ -87,14 +125,30 @@ class FaceDetection:
 
     @staticmethod
     def center_distance(first_detection: FaceDetection, second_detection: FaceDetection) -> float:
+        """
+        Compute Euclidean distance between centers of two bounding boxes.
+        Args:
+            first_detection (FaceDetection): First bounding box
+            second_detection (FaceDetection): Second bounding box
+        Returns:
+            float: Distance in pixels
+        """
         return float(np.linalg.norm(first_detection.center - second_detection.center))
 
     def create_mask(self, image_shape: tuple[int, int, int]) -> np.ndarray:
+        """
+        Create binary mask for the face using landmarks.
+        Args:
+            image_shape (tuple): Shape of the image (H, W, C)
+        Returns:
+            np.ndarray: Binary mask
+        """
         if self.landmarks is None:
             raise ValueError("Cannot create mask without landmarks")
         return self.landmarks.convex_hull_binary_mask(image_shape)
 
     def __str__(self):
+        """String representation of FaceDetection."""
         return f"FaceDetection(ltrb={self.left_top_right_bottom}, confidence={self.confidence})"
 
 
@@ -113,12 +167,23 @@ class FacialLandmarksDetection:
     _mask: Optional[np.ndarray] = field(default=None, init=False, repr=False)
 
     def get_specific_landmarks(self, landmark_indices: list[int]) -> np.ndarray:
-        """Return selected landmark coordinates."""
+        """
+        Return selected landmark coordinates.
+        Args:
+            landmark_indices (list[int]): Indices of landmarks to select
+        Returns:
+            np.ndarray: Selected landmark coordinates
+        """
         return self.landmarks[landmark_indices]
 
     def mean_point(self, landmark_indices: Optional[list[int]] = None) -> np.ndarray:
-        """Compute mean point (arithmetic) of all or selected landmarks."""
-
+        """
+        Compute mean point (arithmetic) of all or selected landmarks.
+        Args:
+            landmark_indices (Optional[list[int]]): Indices of landmarks to use
+        Returns:
+            np.ndarray: Mean point coordinates
+        """
         if landmark_indices is None:
             landmarks = self.landmarks
         else:
@@ -127,7 +192,14 @@ class FacialLandmarksDetection:
         return landmarks.mean(axis=0)
 
     def convex_hull_binary_mask(self, image_shape: tuple[int, int, int], force_recompute=False) -> np.ndarray:
-        """Return a binary mask of the landmarks convex hull (or its cached value)."""
+        """
+        Return a binary mask of the landmarks convex hull (or its cached value).
+        Args:
+            image_shape (tuple): Shape of the image (H, W, C)
+            force_recompute (bool): If True, recompute mask even if cached
+        Returns:
+            np.ndarray: Binary mask
+        """
         if not force_recompute and self._mask is not None and self._mask.shape == image_shape:
             return self._mask
 

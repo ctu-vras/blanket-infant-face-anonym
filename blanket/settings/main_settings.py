@@ -26,6 +26,14 @@ class MainSettings:
 
     @staticmethod
     def from_configs(config_path: Path, defaults_path: Path) -> "MainSettings":
+        """
+        Load main settings from config and defaults YAML files.
+        Args:
+            config_path (Path): Path to main config YAML.
+            defaults_path (Path): Path to defaults YAML.
+        Returns:
+            MainSettings: Loaded settings object.
+        """
         with open(config_path, "r") as f:
             config = yaml.safe_load(f)
         with open(defaults_path, "r") as f:

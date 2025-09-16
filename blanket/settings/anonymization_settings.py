@@ -16,6 +16,11 @@ class AnonymizationSettings:
 
     # data validation
     def __post_init__(self):
+        """
+        Validate types and values after initialization.
+        Raises:
+            ValueError: If types or values are invalid.
+        """
         if type(self.blacken_without_detections) != bool:
             raise ValueError("")
 

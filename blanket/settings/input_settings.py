@@ -5,6 +5,10 @@ from typing import Literal, Optional
 
 @dataclass
 class InputSettings:
+    """
+    Dataclass for input and output folder settings and related options.
+    """
+
     input_folder: Path
     output_folder: Path
 

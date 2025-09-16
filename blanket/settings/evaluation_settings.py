@@ -17,4 +17,9 @@ class EvaluationSettings:
 
     @property
     def sdwebui_server_url(self):
+        """
+        Get the server URL for SDWebUI using stored IP and port.
+        Returns:
+            str: Server URL string.
+        """
         return f"http://{self.ipv4_address}:{self.port}"

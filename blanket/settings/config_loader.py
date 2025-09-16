@@ -16,15 +16,28 @@ T = TypeVar("T")
 
 
 def create_settings_from_config_file(config_filepath: Path, settings_class: Type[T]) -> T:
-    """Strict YAML -> SettingsClass loader. All YAML keys must match dataclass fields."""
+    """
+    Load settings from a YAML config file, requiring all keys to match dataclass fields.
+    Args:
+        config_filepath (Path): Path to YAML config file.
+        settings_class (Type[T]): Dataclass type to instantiate.
+    Returns:
+        T: Instance of settings_class with loaded values.
+    """
     with open(config_filepath, "r") as config_file:
         config_dict = yaml.safe_load(config_file)
     return settings_class(**config_dict)
 
 
 def create_settings_with_extras_from_config_file(config_filepath: Path, settings_class: Type[T]) -> T:
-    """Flexible YAML -> SettingsClass loader. Unknown keys go into 'extra_parameters' field."""
-
+    """
+    Load settings from a YAML config file, allowing unknown keys to be stored in 'extra_parameters'.
+    Args:
+        config_filepath (Path): Path to YAML config file.
+        settings_class (Type[T]): Dataclass type to instantiate.
+    Returns:
+        T: Instance of settings_class with loaded values and extras.
+    """
     with open(config_filepath, "r") as config_file:
         config_dict = yaml.safe_load(config_file)
 
@@ -40,8 +53,14 @@ def create_settings_with_extras_from_config_file(config_filepath: Path, settings
     return settings_class(**known_parameters, extra_parameters=extra_parameters)
 
 
-# TODO - move this elsewhere
 def load_main_settings(config_folder: Path) -> MainSettings:
+    """
+    Load all main settings from a config folder containing multiple YAML files.
+    Args:
+        config_folder (Path): Path to folder with config files.
+    Returns:
+        MainSettings: Main settings object with all sub-settings loaded.
+    """
     return MainSettings(
         input_settings=create_settings_from_config_file(config_folder / "input_config.yaml", InputSettings),
         module_settings=create_settings_from_config_file(config_folder / "modules_config.yaml", ModuleSettings),

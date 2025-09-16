@@ -16,11 +16,24 @@ from blanket.settings.individual_modules_settings.facial_landmarks_detector_sett
 
 class SPIGAFacialLandmarksDetector(BaseFacialLandmarksDetector):
     def __init__(self, settings: FacialLandmarksDetectorSettings):
+        """
+        Initialize SPIGA facial landmarks detector with given settings.
+        Args:
+            settings (FacialLandmarksDetectorSettings): Settings for SPIGA detector.
+        """
         super().__init__(settings)
 
         self._processor = SPIGAFramework(self.settings.model_name)
 
     def detect(self, image_bgr: np.ndarray, face_detection: FaceDetection) -> FacialLandmarksDetection:
+        """
+        Detect facial landmarks for a given face using SPIGA model.
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+            face_detection (FaceDetection): Detected face bounding box.
+        Returns:
+            FacialLandmarksDetection: Detected facial landmarks.
+        """
         features = self._processor.inference(image_bgr, [face_detection.left_top_width_height])
         landmarks = np.array(features["landmarks"][0])
         headpose_ea_deg = np.array(features["headpose"][0])[:3]

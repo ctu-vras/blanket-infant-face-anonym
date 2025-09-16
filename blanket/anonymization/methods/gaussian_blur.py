@@ -6,12 +6,12 @@ class GaussianBlurAnonymizer:
         """
         Applies Gaussian blur to each detected face region in the image.
         Args:
-                image: np.ndarray (BGR image)
-                detections: list of FaceDetection (with left_top_right_bottom property)
-                ksize: tuple, kernel size for Gaussian blur
-                sigma: int, sigma for Gaussian blur
+            image (np.ndarray): BGR image.
+            detections (list): List of FaceDetection objects.
+            ksize (tuple): Kernel size for Gaussian blur.
+            sigma (int): Sigma for Gaussian blur.
         Returns:
-                np.ndarray: anonymized image
+            np.ndarray: Anonymized image.
         """
         anonymized = image.copy()
         for det in detections:

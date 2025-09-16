@@ -38,6 +38,15 @@ facial_landmarks_detector_registry: dict[
 class DetectorFactory:
     @staticmethod
     def create_face_detector(module: FaceDetectorModule) -> BaseFaceDetector:
+        """
+        Create a face detector instance for the given module.
+        Args:
+            module (FaceDetectorModule): Enum value for face detector type.
+        Returns:
+            BaseFaceDetector: Instantiated face detector.
+        Raises:
+            ValueError: If module is unknown.
+        """
         module_registry_entry = face_detector_registry.get(module)
 
         if module_registry_entry is not None:
@@ -53,6 +62,15 @@ class DetectorFactory:
 
     @staticmethod
     def create_facial_landmarks_detector(module: FacialLandmarksDetectorModule) -> BaseFacialLandmarksDetector:
+        """
+        Create a facial landmarks detector instance for the given module.
+        Args:
+            module (FacialLandmarksDetectorModule): Enum value for facial landmarks detector type.
+        Returns:
+            BaseFacialLandmarksDetector: Instantiated facial landmarks detector.
+        Raises:
+            ValueError: If module is unknown.
+        """
         module_registry_entry = facial_landmarks_detector_registry.get(module)
 
         if module_registry_entry is not None:

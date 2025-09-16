@@ -14,19 +14,44 @@ from blanket.settings.individual_modules_settings.facial_landmarks_detector_sett
 
 class BaseFaceDetector(ABC):
     def __init__(self, settings: FaceDetectorSettings):
+        """
+        Initialize base face detector.
+        Args:
+            settings (FaceDetectorSettings): Settings for face detector.
+        """
         self.settings = settings
 
     @abstractmethod
     def detect(self, image_bgr: np.ndarray) -> list[FaceDetection]:
+        """
+        Detect faces in an image (to be implemented by subclasses).
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+        Returns:
+            list[FaceDetection]: List of detected faces.
+        """
         pass
 
 
 class BaseFacialLandmarksDetector(ABC):
     def __init__(self, settings: FacialLandmarksDetectorSettings):
+        """
+        Initialize base facial landmarks detector.
+        Args:
+            settings (FacialLandmarksDetectorSettings): Settings for detector.
+        """
         self.settings = settings
 
     @abstractmethod
     def detect(self, image_bgr: np.ndarray, face_detection: FaceDetection) -> FacialLandmarksDetection:
+        """
+        Detect facial landmarks for a given face (to be implemented by subclasses).
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+            face_detection (FaceDetection): Detected face bounding box.
+        Returns:
+            FacialLandmarksDetection: Detected facial landmarks.
+        """
         pass
 
     # TODO - add support for simultaneous detection of facial landmarks on multiple face detections

@@ -7,11 +7,11 @@ class PixelationAnonymizer:
         """
         Applies pixelation to each detected face region in the image.
         Args:
-                image: np.ndarray (BGR image)
-                detections: list of FaceDetection (with left_top_right_bottom property)
-                pixel_size: int, size of the pixel blocks
+            image (np.ndarray): BGR image.
+            detections (list): List of FaceDetection objects.
+            pixel_size (int): Size of the pixel blocks.
         Returns:
-                np.ndarray: anonymized image
+            np.ndarray: Anonymized image.
         """
         anonymized = image.copy()
         for det in detections:

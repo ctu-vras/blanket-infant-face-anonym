@@ -10,11 +10,23 @@ from blanket.settings.individual_modules_settings.face_detector_settings import 
 
 class YOLOFaceDetector(BaseFaceDetector):
     def __init__(self, settings: FaceDetectorSettings):
+        """
+        Initialize YOLO face detector with given settings.
+        Args:
+            settings (FaceDetectorSettings): Settings for YOLO detector.
+        """
         super().__init__(settings)
 
         self._detection_model = ultralytics.YOLO(settings.model_path)
 
     def detect(self, image_bgr: np.ndarray) -> list[FaceDetection]:
+        """
+        Detect faces in an image using YOLO model.
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+        Returns:
+            list[FaceDetection]: List of detected faces.
+        """
         pred = self._detection_model(
             image_bgr,
             conf=self.settings.minimum_confidence,

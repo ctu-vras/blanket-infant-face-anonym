@@ -29,6 +29,9 @@ class LoggingSettings:
     frames_without_detections_logger: logging.Logger = field(init=False)
 
     def __post_init__(self):
+        """
+        Initialize loggers after dataclass creation.
+        """
         self._setup_process_logger()
         if self.log_anonymization_result:
             self._setup_result_logger()
@@ -36,6 +39,9 @@ class LoggingSettings:
             self._setup_frames_without_detections_logger()
 
     def _setup_process_logger(self):
+        """
+        Set up the process logger for console and file output.
+        """
         self.process_logger = logging.getLogger(PROCESS_LOGGER_NAME)
         self.process_logger.setLevel(logging.DEBUG)  # catch everything
 
@@ -58,6 +64,9 @@ class LoggingSettings:
         self.process_logger.propagate = False  # stops messages from being propagated to ancestor loggers
 
     def _setup_result_logger(self):
+        """
+        Set up the logger for anonymization results.
+        """
         self.anonymization_result_logger = logging.getLogger(ANONYMIZATION_RESULT_LOGGER_NAME)
         self.anonymization_result_logger.setLevel(logging.INFO)
 
@@ -68,6 +77,9 @@ class LoggingSettings:
         self.anonymization_result_logger.propagate = False
 
     def _setup_frames_without_detections_logger(self):
+        """
+        Set up the logger for frames without detections.
+        """
         self.frames_without_detections_logger = logging.getLogger(FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME)
         self.frames_without_detections_logger.setLevel(logging.INFO)
 
@@ -78,5 +90,10 @@ class LoggingSettings:
         self.frames_without_detections_logger.propagate = False
 
     def log_frame_without_detection(self, frame_number: int):
+        """
+        Log a frame number where no faces were detected.
+        Args:
+            frame_number (int): Frame index.
+        """
         if self.log_frames_without_detections:
             self.frames_without_detections_logger.info(f"Frame {frame_number:06d} - no faces detected.")

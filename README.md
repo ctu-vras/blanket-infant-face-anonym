@@ -36,7 +36,7 @@ Key contributions:
 - **Two-stage design**: diffusion-based inpainting + temporally-consistent swap  
 - **Attribute preservation**: expression, gaze, head orientation, eye/mouth openness  
 - **High downstream performance**: ~90% detection AP, ~97% pose estimation retention  
-- **Outperforms SOTA**: beats DeepPrivacy2 on de-identification, perceptual metrics and downsteam task performance
+- **Outperforms SOTA**: beats DeepPrivacyV2 on de-identification, perceptual metrics and downstream task performance
 
 > [!WARNING]  
 > This code is experimental and not yet production-ready. Anonymization results may be imperfect and may miss detections. Full reliability will be achieved once the “missing detections” problem is solved (see Roadmap below).
@@ -91,11 +91,12 @@ BLANKET outperforms DeepPrivacy V2 in all measured metrics.
 | Temporal landmark corr. (↑)     | 0.956 ± 0.064 | 0.860 ± 0.140 |
 | Detection AP vs. orig. (↑)      | 90.7 mAP      | 81.5 mAP      |
 | Pose AP vs. orig. (↑)           | 97.2 mAP      | 79.1 mAP      |
+
+
 ## 🗺️ Roadmap
 
 We will continue refining BLANKET with a focus on quality and reliability:
 
-- [ ] Formatting the code (isort, Black, GitHub Copilot)
 - [ ] Implement Stable Diffusion–based inpainting 
 - [ ] Implement FaceFusion in video and a video demo  
 - [ ] Ensure robust anonymization in frames where faces are not detected  

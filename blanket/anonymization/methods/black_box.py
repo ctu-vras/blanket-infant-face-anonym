@@ -6,10 +6,10 @@ class BlackBoxAnonymizer:
         """
         Draws a black rectangle over each detected face in the image.
         Args:
-                image: np.ndarray (BGR image)
-                detections: list of FaceDetection (with left_top_right_bottom property)
+            image (np.ndarray): BGR image.
+            detections (list): List of FaceDetection objects.
         Returns:
-                np.ndarray: anonymized image
+            np.ndarray: Anonymized image.
         """
         anonymized = image.copy()
         for det in detections:

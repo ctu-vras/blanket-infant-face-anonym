@@ -65,6 +65,15 @@ class ImagePrimitive:
     def from_not_rotated_image(
         image_bgr: np.ndarray, clockwise_rotation_index: int = 0, path: Optional[Path] = None
     ) -> ImagePrimitive:
+        """
+        Create ImagePrimitive from a not-rotated image.
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+            clockwise_rotation_index (int): Number of 90° rotations.
+            path (Optional[Path]): Path to image file.
+        Returns:
+            ImagePrimitive: The image primitive object.
+        """
         if clockwise_rotation_index:
             image_bgr = ImagePrimitive.rotate_image(image_bgr, clockwise_rotation_index)
 
@@ -72,30 +81,51 @@ class ImagePrimitive:
 
     @staticmethod
     def from_path(path: Path, clockwise_rotation_index: int = 0) -> ImagePrimitive:
+        """
+        Create ImagePrimitive from image file path.
+        Args:
+            path (Path): Path to image file.
+            clockwise_rotation_index (int): Number of 90° rotations.
+        Returns:
+            ImagePrimitive: The image primitive object.
+        """
         image_bgr = cv2.imread(str(path))
-
         return ImagePrimitive.from_not_rotated_image(image_bgr, clockwise_rotation_index, path)
 
     @property
     def image_rgb(self) -> np.ndarray:
-        """Return the image in RGB format."""
+        """
+        Return the image in RGB format.
+        Returns:
+            np.ndarray: Image in RGB format.
+        """
         return self.convert_bgr_to_rgb(self.image_bgr)
 
     @property
     def shape(self) -> tuple[int, ...]:
+        """Get shape of the image."""
         return self.image_bgr.shape
 
     @property
     def width(self) -> int:
+        """Get width of the image."""
         return self.shape[1]
 
     @property
     def height(self) -> int:
+        """Get height of the image."""
         return self.shape[0]
 
     def save_image(
         self, path: Optional[Path] = None, rotate_back: bool = True, restricted_access_to_saved: bool = False
     ) -> None:
+        """
+        Save the image to disk, optionally rotating back to original orientation.
+        Args:
+            path (Optional[Path]): Path to save image.
+            rotate_back (bool): If True, rotate back to original orientation.
+            restricted_access_to_saved (bool): If True, restrict file permissions.
+        """
         if path is None:
             path = self.path
 
@@ -110,16 +140,36 @@ class ImagePrimitive:
 
     @staticmethod
     def convert_bgr_to_rgb(image_bgr: np.ndarray) -> np.ndarray:
+        """
+        Convert image from BGR to RGB format.
+        Args:
+            image_bgr (np.ndarray): Image in BGR format.
+        Returns:
+            np.ndarray: Image in RGB format.
+        """
         return cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
 
     @staticmethod
     def convert_rgb_to_bgr(image_rgb: np.ndarray) -> np.ndarray:
+        """
+        Convert image from RGB to BGR format.
+        Args:
+            image_rgb (np.ndarray): Image in RGB format.
+        Returns:
+            np.ndarray: Image in BGR format.
+        """
         return cv2.cvtColor(image_rgb, cv2.COLOR_RGB2BGR)
 
     @staticmethod
     def rotate_image(image: np.ndarray, clockwise_rotation_index: int) -> np.ndarray:
-        """Rotate an image array by 90° increments clockwise. For counterclockwise rotation use negative indices."""
-
+        """
+        Rotate an image array by 90° increments clockwise. For counterclockwise rotation use negative indices.
+        Args:
+            image (np.ndarray): Image array.
+            clockwise_rotation_index (int): Number of 90° rotations.
+        Returns:
+            np.ndarray: Rotated image.
+        """
         if image is None:
             raise ValueError("Cannot rotate None image")
 
@@ -150,7 +200,11 @@ class VideoPrimitive:
     _height: Optional[int] = field(default=None, init=False)
 
     def _ensure_video_capture_is_open(self) -> cv2.VideoCapture:
-        """Ensure that the video capture is opened."""
+        """
+        Ensure that the video capture is opened.
+        Returns:
+            cv2.VideoCapture: Opened video capture object.
+        """
         if self._video_capture is None:
             self._video_capture = cv2.VideoCapture(str(self.path))
 
@@ -161,30 +215,56 @@ class VideoPrimitive:
 
     @property
     def total_frames(self) -> int:
+        """
+        Get total number of frames in the video.
+        Returns:
+            int: Total frame count.
+        """
         if self._total_frames is None:
             self._total_frames = int(self._ensure_video_capture_is_open().get(cv2.CAP_PROP_FRAME_COUNT))
         return self._total_frames
 
     @property
     def fps(self) -> float:
+        """
+        Get frames per second of the video.
+        Returns:
+            float: FPS value.
+        """
         if self._fps is None:
             self._fps = self._ensure_video_capture_is_open().get(cv2.CAP_PROP_FPS)
         return self._fps
 
     @property
     def width(self) -> int:
+        """
+        Get width of the video frames.
+        Returns:
+            int: Frame width.
+        """
         if self._width is None:
             self._width = int(self._ensure_video_capture_is_open().get(cv2.CAP_PROP_FRAME_WIDTH))
         return self._width
 
     @property
     def height(self) -> int:
+        """
+        Get height of the video frames.
+        Returns:
+            int: Frame height.
+        """
         if self._height is None:
             self._height = int(self._ensure_video_capture_is_open().get(cv2.CAP_PROP_FRAME_HEIGHT))
         return self._height
 
     def load_frame_as_array(self, index: int) -> np.ndarray:
-        """Get frame at the specified index as numpy array."""
+        """
+        Get frame at the specified index as numpy array.
+        Args:
+            index (int): Frame index.
+        Returns:
+            np.ndarray: Frame image array.
+        """
         video_capture = self._ensure_video_capture_is_open()
 
         # check that index is valid
@@ -202,6 +282,10 @@ class VideoPrimitive:
         """
         Get the next frame or a frame at specific index, update current index to the index of the next frame and
         return the frame as ImagePrimitive.
+        Args:
+            index (Optional[int]): Frame index. If None, use current index.
+        Returns:
+            ImagePrimitive: Frame as image primitive.
         """
         if index is None:
             index = self.current_frame_index
@@ -212,27 +296,49 @@ class VideoPrimitive:
         return ImagePrimitive.from_not_rotated_image(frame_bgr, clockwise_rotation_index=self.clockwise_rotation_index)
 
     def reset_current_frame_index(self) -> None:
-        """Resets the current frame index to the start (index 0)."""
+        """
+        Resets the current frame index to the start (index 0).
+        """
         self.current_frame_index = 0
 
     def release(self) -> None:
-        """Release the video capture handle."""
+        """
+        Release the video capture handle.
+        """
         if self._video_capture is not None:
             self._video_capture.release()
             self._video_capture = None
 
     def __enter__(self) -> VideoPrimitive:
+        """
+        Enter context manager, ensure video is open.
+        Returns:
+            VideoPrimitive: Self.
+        """
         self._ensure_video_capture_is_open()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
+        """
+        Exit context manager, release video.
+        """
         self.release()
 
     def __iter__(self):
+        """
+        Iterator protocol: reset frame index and return self.
+        Returns:
+            VideoPrimitive: Self.
+        """
         self.reset_current_frame_index()
         return self
 
     def __next__(self):
+        """
+        Iterator protocol: return next frame primitive or raise StopIteration.
+        Returns:
+            ImagePrimitive: Next frame.
+        """
         if self.current_frame_index >= self.total_frames:
             raise StopIteration
         return self.get_frame_primitive()

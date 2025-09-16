@@ -8,6 +8,10 @@ from blanket.settings.individual_modules_settings.sdwebui_settings import SDWebU
 
 @dataclass
 class ModuleSettings:
+    """
+    Dataclass for module settings (identity encoder, face detector, landmarks detector).
+    """
+
     identity_encoder_name: str  # TODO - turn this into an enum
     face_detector_name: str
     facial_landmarks_detector_name: str

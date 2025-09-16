@@ -1,6 +1,0 @@
-evaluate_redetections: true
-evaluate_identity_switches: true
-max_evaluated_frames: 500
-metrics:
-  - identity_consistency
-  - detection_accuracy

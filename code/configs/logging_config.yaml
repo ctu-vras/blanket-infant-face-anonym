@@ -1,8 +1,0 @@
-process_console_log_level: "info"
-
-save_log_file: false
-log_file_log_level: "debug"
-log_file_path: "process_log.txt"
-
-# TODO - log number of detected faces per image/video frames
-#  maybe log to a separate file frames with no detections

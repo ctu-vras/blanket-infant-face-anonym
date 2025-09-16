@@ -43,7 +43,6 @@ Key contributions:
 - **May 2025**: Paper accepted to ICDL 2025! 🎉
 
 ## 🚀 Installation
-git clone https://github.com/ctu-vras/blanket-infant-face-anonym.git
 To install BLANKET and its dependencies:
 
 ```bash
@@ -53,13 +52,10 @@ pip install -r requirements.txt
 pip install .
 ```
 
-**Requirements**
+**Pre-trained models**
 
-* Python 3.9+
-* PyTorch 1.12+
-* ultralytics
-* numpy
-* opencv-python
+* YOLOv11L-face - [download from Ultralytics](https://github.com/YapaLab/yolo-face/releases/download/v0.0.0/yolov11l-face.pt)
+* spiga - ????
 
 
 ## 🎮 Demo
@@ -79,10 +75,6 @@ This will process all images in your input folder, apply face detection and thre
 
 You can adjust detection and anonymization settings in `blanket/configs/config.yaml`.
 
-## 📦 Pre-trained Models
-<span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>
-
-Pre-trained landmarks and swap models will be available via Hugging Face soon.
 
 ## 📊 Evaluation
 
@@ -102,7 +94,7 @@ BLANKET outperforms DeepPrivacy V2 in all measured metrics.
 
 * [ ] Upload the code (installation instructions, demo)
 * [ ] Make the code nice - iSort, Black, Copilot
-* [ ] Upload pre-trained weights or link specific models for the demo
+* [x] Upload pre-trained weights or link specific models for the demo
 * [ ] Publish paper on ArXiv (and link it here) -- should be done after code is ready
 * [x] Add visualization GIF
 * [x] Add paper to repository to host it ourselves

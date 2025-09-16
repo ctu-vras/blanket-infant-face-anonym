@@ -6,7 +6,7 @@ from copy import deepcopy
 import numpy as np
 import cv2
 
-from code.source.core.geometry import SO3
+from source.core.geometry import SO3
 
 
 @dataclass

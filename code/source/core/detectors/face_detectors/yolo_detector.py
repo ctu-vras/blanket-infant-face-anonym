@@ -3,9 +3,9 @@ import numpy as np
 
 import ultralytics
 
-from code.source.core.objects.detections import FaceDetection
-from code.source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
-from code.source.core.detectors.base_detectors import BaseFaceDetector
+from source.core.objects.detections import FaceDetection
+from source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from source.core.detectors.base_detectors import BaseFaceDetector
 
 
 class YOLOFaceDetector(BaseFaceDetector):

@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from input_settings import InputSettings
-from module_settings import ModuleSettings
-from anonymization_settings import AnonymizationSettings
-from evaluation_settings import EvaluationSettings
-from logging_settings import LoggingSettings
+from .input_settings import InputSettings
+from .module_settings import ModuleSettings
+from .anonymization_settings import AnonymizationSettings
+from .evaluation_settings import EvaluationSettings
+from .logging_settings import LoggingSettings
 
 
 @dataclass

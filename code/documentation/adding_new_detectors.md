@@ -23,9 +23,9 @@ Your class should inherit from the correct base class:
 #### Face Detector Example
 ```python
 import numpy as np
-from code.source.core.objects.detections import FaceDetection
-from code.source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
-from code.source.core.detectors.base_detectors import BaseFaceDetector
+from source.core.objects.detections import FaceDetection
+from source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from source.core.detectors.base_detectors import BaseFaceDetector
 
 class MyNewFaceDetector(BaseFaceDetector):
     def __init__(self, settings: FaceDetectorSettings):
@@ -42,9 +42,9 @@ class MyNewFaceDetector(BaseFaceDetector):
 #### Facial Landmarks Detector Example
 ```python
 import numpy as np
-from code.source.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from code.source.settings.individual_modules_settings.facial_landmarks_detector_settings import FacialLandmarksDetectorSettings 
-from code.source.core.detectors.base_detectors import BaseFacialLandmarksDetector
+from source.core.objects.detections import FaceDetection, FacialLandmarksDetection
+from source.settings.individual_modules_settings.facial_landmarks_detector_settings import FacialLandmarksDetectorSettings 
+from source.core.detectors.base_detectors import BaseFacialLandmarksDetector
 
 class MyNewLandmarksDetector(BaseFacialLandmarksDetector):
     def __init__(self, settings: FacialLandmarksDetectorSettings):

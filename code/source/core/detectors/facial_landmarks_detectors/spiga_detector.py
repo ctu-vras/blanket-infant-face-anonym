@@ -2,14 +2,14 @@ from __future__ import annotations
 import numpy as np
 import cv2
 
-from SPIGA.spiga.inference.config import ModelConfig
-from SPIGA.spiga.inference.framework import SPIGAFramework
+# from SPIGA.spiga.inference.config import ModelConfig
+# from SPIGA.spiga.inference.framework import SPIGAFramework
 
-from code.source.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from code.source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
+from source.core.objects.detections import FaceDetection, FacialLandmarksDetection
+from source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings)
-from code.source.core.geometry import SO3
-from code.source.core.detectors.base_detectors import BaseFacialLandmarksDetector
+from source.core.geometry import SO3
+from source.core.detectors.base_detectors import BaseFacialLandmarksDetector
 
 
 class SPIGAFacialLandmarksDetector(BaseFacialLandmarksDetector):

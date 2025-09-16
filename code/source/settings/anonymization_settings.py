@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Literal, Optional
-from constants.enums.anonymization_enums import PaddingMethod
+from ..constants.enums.anonymization_enums import PaddingMethod
 
 
 @dataclass

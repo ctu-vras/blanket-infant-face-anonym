@@ -3,9 +3,9 @@ from abc import ABC, abstractmethod
 # from dataclasses import dataclass
 import numpy as np
 
-from code.source.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from code.source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
-from code.source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
+from source.core.objects.detections import FaceDetection, FacialLandmarksDetection
+from source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings)
 
 

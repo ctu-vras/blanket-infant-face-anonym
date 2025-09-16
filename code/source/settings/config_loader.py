@@ -3,12 +3,12 @@ from pathlib import Path
 from typing import Type, TypeVar
 from dataclasses import fields
 
-from main_settings import MainSettings
-from input_settings import InputSettings
-from module_settings import ModuleSettings
-from anonymization_settings import AnonymizationSettings
-from evaluation_settings import EvaluationSettings
-from logging_settings import LoggingSettings
+from .main_settings import MainSettings
+from .input_settings import InputSettings
+from .module_settings import ModuleSettings
+from .anonymization_settings import AnonymizationSettings
+from .evaluation_settings import EvaluationSettings
+from .logging_settings import LoggingSettings
 
 
 # T = TypeVar("T", bound=BaseSettings)  # with all settings classes inheriting from class BaseSettings(ABC)
@@ -44,8 +44,8 @@ def create_settings_with_extras_from_config_file(config_filepath: Path, settings
 def load_main_settings(config_folder: Path) -> MainSettings:
     return MainSettings(
         input_settings=create_settings_from_config_file(config_folder / "input_config.yaml", InputSettings),
-        module_settings=create_settings_from_config_file(config_folder / "module_config.yaml", ModuleSettings),
+        module_settings=create_settings_from_config_file(config_folder / "modules_config.yaml", ModuleSettings),
         anonymization_settings=create_settings_from_config_file(config_folder / "anonymization_config.yaml", AnonymizationSettings),
         evaluation_settings=create_settings_from_config_file(config_folder / "evaluation_config.yaml", EvaluationSettings),
-        logging_settings=create_settings_from_config_file(config_folder / "logging_settings.yaml", LoggingSettings)
+        logging_settings=create_settings_from_config_file(config_folder / "logging_config.yaml", LoggingSettings)
     )

@@ -1,2 +1,2 @@
-input_folder: ""
-output_folder: ""
+input_folder: "../data/"
+output_folder: "outputs/"

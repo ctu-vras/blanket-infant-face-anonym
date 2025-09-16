@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE files
+.idea/
+.vscode/
+.env/
+.venv/
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.coverage
+.cache/
+.ipynb_checkpoints/
+.history/
+.ropeproject/
+.pycharm/
+.spyderproject/
+.spyproject/
+
+# Python environment files
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+.tox/
+.coverage
+coverage.xml
+*.cover
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pre-trained models
+*.pth
+*.pt
+
+# Image files
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.gif
+*.tiff
+*.tif
+*.webp
+*.svg
+*.ico
+
+# Output folders
+outputs/
+logs/
+*.pt
+*.jpg

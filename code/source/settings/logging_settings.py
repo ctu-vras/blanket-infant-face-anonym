@@ -5,9 +5,14 @@ import logging
 import logging.config
 import os
 import yaml
-from logging_constants import (PROCESS_LOGGER_NAME,
-                               ANONYMIZATION_RESULT_LOGGER_NAME,
-                               FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME)
+# from logging_constants import (PROCESS_LOGGER_NAME,
+#                                ANONYMIZATION_RESULT_LOGGER_NAME,
+#                                FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME)
+
+PROCESS_LOGGER_NAME = "process_logger"
+ANONYMIZATION_RESULT_LOGGER_NAME = "anonymization_result_logger"
+FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME = "frames_without_detections_logger"
+
 
 
 @dataclass

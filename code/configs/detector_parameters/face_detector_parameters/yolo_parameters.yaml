@@ -2,7 +2,8 @@ module_name: "yolo"
 
 model_name: "yolov11l-face"
 # models: https://github.com/akanametov/yolo-face?tab=readme-ov-file#models
-model_path: "../yolov8-face/ultralytics/models/v11/yolov11l-face.pt"  # TODO - update model path
+# model_path: "../yolov8-face/ultralytics/models/v11/yolov11l-face.pt"  # TODO - update model path
+model_path: "models/yolov11l-face.pt"
 
 minimum_confidence: 0.3
 

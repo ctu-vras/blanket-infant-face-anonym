@@ -2,15 +2,15 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TypeVar, Type
 
-from code.source.settings.config_loader import create_settings_with_extras_from_config_file
-from code.source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
-from code.source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
+from source.settings.config_loader import create_settings_with_extras_from_config_file
+from source.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from source.settings.individual_modules_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings)
-from code.source.core.detectors.base_detectors import BaseFaceDetector, BaseFacialLandmarksDetector
-from code.source.constants.enums.detection_enums import FaceDetectorModule, FacialLandmarksDetectorModule
+from source.core.detectors.base_detectors import BaseFaceDetector, BaseFacialLandmarksDetector
+from source.constants.enums.detection_enums import FaceDetectorModule, FacialLandmarksDetectorModule
 
-from code.source.core.detectors.face_detectors.yolo_detector import YOLOFaceDetector
-from code.source.core.detectors.facial_landmarks_detectors.spiga_detector import SPIGAFacialLandmarksDetector
+from source.core.detectors.face_detectors.yolo_detector import YOLOFaceDetector
+# from source.core.detectors.facial_landmarks_detectors.spiga_detector import SPIGAFacialLandmarksDetector
 
 
 face_detector_parameters_folder = Path("configs/detector_parameters/face_detector_parameters")
@@ -24,7 +24,7 @@ face_detector_registry: dict[FaceDetectorModule, tuple[Type[BaseFaceDetector], P
 facial_landmarks_detector_parameters_folder = Path("configs/detector_parameters/facial_landmarks_detector_parameters")
 
 facial_landmarks_detector_registry: dict[FacialLandmarksDetectorModule, tuple[Type[BaseFacialLandmarksDetector], Path]] = {
-    FacialLandmarksDetectorModule.SPIGA: (SPIGAFacialLandmarksDetector, Path("spiga_parameters.yaml")),
+# FacialLandmarksDetectorModule.SPIGA: (SPIGAFacialLandmarksDetector, Path("spiga_parameters.yaml")),
     # ... additional facial landmarks detectors
 }
 

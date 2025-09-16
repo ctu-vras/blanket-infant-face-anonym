@@ -26,8 +26,6 @@
 [![ICDL 2025](https://img.shields.io/badge/Accepted%20to-ICDL%202025-blue)](https://icdl2025.fel.cvut.cz) &nbsp;&nbsp;&nbsp;
 [![Paper and Supplementary](https://img.shields.io/badge/Paper%20+%20Supplementary-arXiv-red)](resources/BLANKET.pdf) &nbsp;&nbsp;&nbsp;
 [![License](https://img.shields.io/badge/License-GPL%203.0-green.svg)](LICENSE)
-
-<span style="color:tomato; font-weight:bold">MP: I Used GPL-3.0 license which I use for all my code. Let me know if you want to use different one.</span>
 </div>
 
 ## 📋 Overview
@@ -45,36 +43,41 @@ Key contributions:
 - **May 2025**: Paper accepted to ICDL 2025! 🎉
 
 ## 🚀 Installation
-<span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>
+git clone https://github.com/ctu-vras/blanket-infant-face-anonym.git
+To install BLANKET and its dependencies:
 
 ```bash
 git clone https://github.com/ctu-vras/blanket-infant-face-anonym.git
 cd blanket-infant-face-anonym
 pip install -r requirements.txt
+pip install .
 ```
 
 **Requirements**
-<span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>
 
 * Python 3.9+
 * PyTorch 1.12+
-* [Stable Diffusion checkpoint](https://huggingface.co/SG161222/Realistic_Vision_V2.0)
-* [FaceFusion](https://github.com/facefusion/facefusion)
+* ultralytics
+* numpy
+* opencv-python
+
 
 ## 🎮 Demo
-<span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>
+To run the image anonymization demo:
 
-Run anonymization on a sample video:
+1. Set your input and output folders in `blanket/configs/config.yaml`:
+  - `input_folder`: path to your images (default: `../data/`)
+  - `output_folder`: path for results (default: `outputs/`)
+
+2. Run the demo script:
 
 ```bash
-python anonymize.py \
-  --input_video demo/baby_video.mp4 \
-  --output_video demo/anonymized.mp4 \
-  --sd_checkpoint Realistic_Vision_V2.0 \
-  --noise_level 0.8
+python run_image_anonymization.py
 ```
 
-Check `demo/` for example input/output pairs.
+This will process all images in your input folder, apply face detection and three anonymization methods (black box, pixelation, gaussian blur), and save composite results to your output folder.
+
+You can adjust detection and anonymization settings in `blanket/configs/config.yaml`.
 
 ## 📦 Pre-trained Models
 <span style="color:red; font-weight:bold">WARNING: This section will need edits after the code is prepared.</span>

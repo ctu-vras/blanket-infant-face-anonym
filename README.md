@@ -38,6 +38,10 @@ Key contributions:
 - **High downstream performance**: ~90% detection AP, ~97% pose estimation retention  
 - **Outperforms SOTA**: beats DeepPrivacy2 on de-identification, perceptual metrics and downsteam task performance
 
+> [!WARNING]  
+> This code is experimental and not yet production-ready. Anonymization results may be imperfect and may miss detections. Full reliability will be achieved once the “missing detections” problem is solved (see Roadmap below).
+
+
 ## 📢 News
 
 - **May 2025**: Paper accepted to ICDL 2025! 🎉
@@ -55,7 +59,6 @@ pip install .
 **Pre-trained models**
 
 * YOLOv11L-face - [download from Ultralytics](https://github.com/YapaLab/yolo-face/releases/download/v0.0.0/yolov11l-face.pt)
-* spiga - ????
 
 
 ## 🎮 Demo
@@ -88,16 +91,14 @@ BLANKET outperforms DeepPrivacy V2 in all measured metrics.
 | Temporal landmark corr. (↑)     | 0.956 ± 0.064 | 0.860 ± 0.140 |
 | Detection AP vs. orig. (↑)      | 90.7 mAP      | 81.5 mAP      |
 | Pose AP vs. orig. (↑)           | 97.2 mAP      | 79.1 mAP      |
+## 🗺️ Roadmap
 
-## 🗺️ Roadmap (remove upon publication)
-<span style="color:magenta; font-weight:bold">WARNING: Remove this section after publication as we will have no roadmap by then.</span>
+We will continue refining BLANKET with a focus on quality and reliability:
 
-* [ ] Upload the code (installation instructions, demo)
-* [ ] Make the code nice - iSort, Black, Copilot
-* [x] Upload pre-trained weights or link specific models for the demo
-* [ ] Publish paper on ArXiv (and link it here) -- should be done after code is ready
-* [x] Add visualization GIF
-* [x] Add paper to repository to host it ourselves
+- [ ] Formatting the code (isort, Black, GitHub Copilot)
+- [ ] Implement Stable Diffusion–based inpainting 
+- [ ] Implement FaceFusion in video and a video demo  
+- [ ] Ensure robust anonymization in frames where faces are not detected  
 
 ## 🙏 Acknowledgments
 
@@ -106,7 +107,6 @@ Thanks to Adéla Šubrtová for early feedback.
 Thanks to Max Familly Fun for the banner picture.
 
 ## 📝 Citation
-<span style="color:orange; font-weight:bold">WARNING: This section will need edits after the paper is published or Arxiv.</span>
 
 If you use BLANKET, please cite:
 

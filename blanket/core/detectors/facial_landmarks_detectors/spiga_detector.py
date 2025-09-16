@@ -1,15 +1,17 @@
 from __future__ import annotations
-import numpy as np
+
 import cv2
+import numpy as np
+
+from blanket.core.detectors.base_detectors import BaseFacialLandmarksDetector
+from blanket.core.geometry import SO3
+from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
+from blanket.settings.individual_modules_settings.facial_landmarks_detector_settings import (
+    FacialLandmarksDetectorSettings,
+)
 
 # from SPIGA.spiga.inference.config import ModelConfig
 # from SPIGA.spiga.inference.framework import SPIGAFramework
-
-from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.individual_modules_settings.facial_landmarks_detector_settings import (
-    FacialLandmarksDetectorSettings)
-from blanket.core.geometry import SO3
-from blanket.core.detectors.base_detectors import BaseFacialLandmarksDetector
 
 
 class SPIGAFacialLandmarksDetector(BaseFacialLandmarksDetector):

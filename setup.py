@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="blanket",
@@ -6,13 +6,7 @@ setup(
     description="BLANKET: Anonymizing Faces in Infant Video Recordings",
     author="Ditmar Hadera, Jan Cech, Miroslav Purkrabek, Matej Hoffmann",
     packages=find_packages(include=["blanket*"]),
-    install_requires=[
-        "torch>=1.12",
-        "ultralytics",
-        "numpy",
-        "opencv-python",
-        "pyyaml"
-    ],
+    install_requires=["torch>=1.12", "ultralytics", "numpy", "opencv-python", "pyyaml"],
     python_requires=">=3.9",
     include_package_data=True,
     package_data={
@@ -31,13 +25,9 @@ setup(
             "anonymization/methods/*.py",
             "anonymization/pipelines/*.py",
             "core/geometry.py",
-            "core/visualization.py"
+            "core/visualization.py",
         ]
     },
-    entry_points={
-        "console_scripts": [
-            "blanket-run-image=run_image_anonymization:main"
-        ]
-    },
-    license="GPL-3.0"
+    entry_points={"console_scripts": ["blanket-run-image=run_image_anonymization:main"]},
+    license="GPL-3.0",
 )

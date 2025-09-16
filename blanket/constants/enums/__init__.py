@@ -1,4 +1,5 @@
 from .anonymization_enums import MatchingMethod, PaddingMethod
+
 # from .predictor import PredictorType
 
 __all__ = [

@@ -21,4 +21,3 @@ class InputSettings:
     save_sdwebui_parameters: bool = True
 
     save_facefusion_parameters: bool = True
-

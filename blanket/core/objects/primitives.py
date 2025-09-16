@@ -7,14 +7,15 @@
 
 
 from __future__ import annotations
-from pathlib import Path
-from dataclasses import dataclass, field
-from typing import Optional
+
 # from abc import ABC, abstractmethod
 import os
-import numpy as np
-import cv2
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Optional
 
+import cv2
+import numpy as np
 
 # @dataclass
 # class Primitive(ABC):
@@ -55,13 +56,15 @@ import cv2
 @dataclass
 class ImagePrimitive:
     """Represents a single image."""
+
     image_bgr: np.ndarray  # already rotated image in BGR format
     clockwise_rotation_index: int = 0  # index tracking in how many 90° increments has the image been rotated
     path: Optional[Path] = None
 
     @staticmethod
-    def from_not_rotated_image(image_bgr: np.ndarray, clockwise_rotation_index: int = 0, path: Optional[Path] = None
-                               ) -> ImagePrimitive:
+    def from_not_rotated_image(
+        image_bgr: np.ndarray, clockwise_rotation_index: int = 0, path: Optional[Path] = None
+    ) -> ImagePrimitive:
         if clockwise_rotation_index:
             image_bgr = ImagePrimitive.rotate_image(image_bgr, clockwise_rotation_index)
 
@@ -90,8 +93,9 @@ class ImagePrimitive:
     def height(self) -> int:
         return self.shape[0]
 
-    def save_image(self, path: Optional[Path] = None, rotate_back: bool = True,
-                   restricted_access_to_saved: bool = False) -> None:
+    def save_image(
+        self, path: Optional[Path] = None, rotate_back: bool = True, restricted_access_to_saved: bool = False
+    ) -> None:
         if path is None:
             path = self.path
 
@@ -134,6 +138,7 @@ class ImagePrimitive:
 @dataclass
 class VideoPrimitive:
     """Represents a video. Wraps path and frame-level access."""
+
     path: Path
     clockwise_rotation_index: int = 0
     current_frame_index: int = 0

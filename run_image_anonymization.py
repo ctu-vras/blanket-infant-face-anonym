@@ -1,19 +1,19 @@
-
 import os
 from pathlib import Path
+
 import cv2
 import numpy as np
-from blanket.settings.main_settings import MainSettings
-from blanket.constants.enums.detection_enums import FaceDetectorModule
-from blanket.core.detectors.detector_factory import DetectorFactory
 
 from blanket.anonymization.methods.black_box import BlackBoxAnonymizer
-from blanket.anonymization.methods.pixelation import PixelationAnonymizer
 from blanket.anonymization.methods.gaussian_blur import GaussianBlurAnonymizer
+from blanket.anonymization.methods.pixelation import PixelationAnonymizer
+from blanket.constants.enums.detection_enums import FaceDetectorModule
+from blanket.core.detectors.detector_factory import DetectorFactory
+from blanket.settings.main_settings import MainSettings
 
 # Load consolidated config
-CONFIG_DIR = Path(os.path.join(os.path.dirname(__file__), 'blanket', 'configs'))
-main_settings = MainSettings.from_configs(CONFIG_DIR / 'config.yaml', CONFIG_DIR / 'defaults.yaml')
+CONFIG_DIR = Path(os.path.join(os.path.dirname(__file__), "blanket", "configs"))
+main_settings = MainSettings.from_configs(CONFIG_DIR / "config.yaml", CONFIG_DIR / "defaults.yaml")
 
 input_folder = main_settings.input_folder
 output_folder = Path(main_settings.output_folder)
@@ -30,7 +30,7 @@ gaussian_blur = GaussianBlurAnonymizer()
 
 for img_name in os.listdir(input_folder):
     img_path = Path(input_folder) / img_name
-    if not img_path.suffix.lower() in ['.jpg', '.jpeg', '.png', '.bmp']:
+    if not img_path.suffix.lower() in [".jpg", ".jpeg", ".png", ".bmp"]:
         continue
     image = cv2.imread(str(img_path))
     if image is None:

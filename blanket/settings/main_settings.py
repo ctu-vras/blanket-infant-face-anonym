@@ -1,7 +1,8 @@
-
-import yaml
 from dataclasses import dataclass, field
 from pathlib import Path
+
+import yaml
+
 
 @dataclass
 class MainSettings:
@@ -47,5 +48,5 @@ class MainSettings:
             max_frame_detection_lookback=defaults.get("max_frame_detection_lookback", 0),
             anonymization_padding_method=defaults.get("anonymization_padding_method", "ratio"),
             anonymization_padding_ratio=defaults.get("anonymization_padding_ratio", 0.75),
-            anonymization_padding_constant=defaults.get("anonymization_padding_constant", 96)
+            anonymization_padding_constant=defaults.get("anonymization_padding_constant", 96),
         )

@@ -1,10 +1,12 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Optional
+
 import os
 from copy import deepcopy
-import numpy as np
+from dataclasses import dataclass, field
+from typing import Optional
+
 import cv2
+import numpy as np
 
 from blanket.core.geometry import SO3
 
@@ -12,6 +14,7 @@ from blanket.core.geometry import SO3
 @dataclass
 class FaceDetection:
     """Stores a face bounding box (axis aligned) and optionally associated facial landmarks."""
+
     left_top_right_bottom: np.ndarray  # [left, top, right, bottom], int32
     confidence: Optional[float] = None
     landmarks: Optional[FacialLandmarksDetection] = None
@@ -20,9 +23,12 @@ class FaceDetection:
         self.left_top_right_bottom = np.round(self.left_top_right_bottom).astype(np.int32)
 
     @staticmethod
-    def from_left_top_width_height(left_top_width_height: np.ndarray, confidence: Optional[int] = None) -> FaceDetection:
+    def from_left_top_width_height(
+        left_top_width_height: np.ndarray, confidence: Optional[int] = None
+    ) -> FaceDetection:
         return FaceDetection(
-            left_top_width_height + np.asarray([0, 0, left_top_width_height[0], left_top_width_height[1]]), confidence)
+            left_top_width_height + np.asarray([0, 0, left_top_width_height[0], left_top_width_height[1]]), confidence
+        )
 
     @property
     def left_top_width_height(self) -> np.ndarray:
@@ -66,9 +72,11 @@ class FaceDetection:
     def intersection_over_union(first_detection: FaceDetection, second_detection: FaceDetection) -> float:
         """Compute Intersection over Union (IoU) of two bounding boxes."""
         intersection_left_top = np.maximum(
-            first_detection.left_top_right_bottom[:2], second_detection.left_top_right_bottom[:2])
+            first_detection.left_top_right_bottom[:2], second_detection.left_top_right_bottom[:2]
+        )
         intersection_right_bottom = np.minimum(
-            first_detection.left_top_right_bottom[2:], second_detection.left_top_right_bottom[2:])
+            first_detection.left_top_right_bottom[2:], second_detection.left_top_right_bottom[2:]
+        )
 
         intersection_width_height = np.maximum(0, intersection_right_bottom - intersection_left_top)  # (width, height)
         intersection_area = intersection_width_height[0] * intersection_width_height[1]
@@ -97,6 +105,7 @@ class FaceDetection:
 @dataclass
 class FacialLandmarksDetection:
     """Stores pixel coordinates of facial landmarks and optionally 3D facial orientation and confidence."""
+
     landmarks: np.ndarray  # shape (num_landmarks, 2)
     orientation: Optional[SO3] = None
     confidence: Optional[np.ndarray] = None  # per-landmark confidence
@@ -127,4 +136,3 @@ class FacialLandmarksDetection:
         cv2.fillConvexPoly(self._mask, hull, color=(255, 255, 255))
 
         return self._mask
-

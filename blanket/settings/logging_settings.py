@@ -1,15 +1,15 @@
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Literal, Optional
 import logging
 import logging.config
 import os
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Literal, Optional
+
 import yaml
 
 PROCESS_LOGGER_NAME = "process_logger"
 ANONYMIZATION_RESULT_LOGGER_NAME = "anonymization_result_logger"
 FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME = "frames_without_detections_logger"
-
 
 
 @dataclass

@@ -1,4 +1,3 @@
-
 class VideoPipeline:
-	def run(self):
-		raise NotImplementedError("Video pipeline not implemented yet.")
+    def run(self):
+        raise NotImplementedError("Video pipeline not implemented yet.")

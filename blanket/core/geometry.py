@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import numpy as np
 
 
@@ -11,7 +12,7 @@ class SO3:
         """Creates a rotation transformation from rot_vector."""
 
         super().__init__()
-        self.rot: np.ndarray = (np.asarray(rotation_matrix) if rotation_matrix is not None else np.eye(3))
+        self.rot: np.ndarray = np.asarray(rotation_matrix) if rotation_matrix is not None else np.eye(3)
 
     @staticmethod
     def exp(rot_vector: np.ndarray) -> SO3:
@@ -89,13 +90,9 @@ class SO3:
         assert len(axis) == 3
         # assert np.linalg.norm(axis) == 1
 
-        omega_matrix = np.asarray([[0, -axis[2], axis[1]],
-                                   [axis[2], 0, -axis[0]],
-                                   [-axis[1], axis[0], 0]])
+        omega_matrix = np.asarray([[0, -axis[2], axis[1]], [axis[2], 0, -axis[0]], [-axis[1], axis[0], 0]])
 
-        return SO3(np.eye(3) +
-                   np.sin(angle) * omega_matrix +
-                   (1 - np.cos(angle)) * (omega_matrix @ omega_matrix))
+        return SO3(np.eye(3) + np.sin(angle) * omega_matrix + (1 - np.cos(angle)) * (omega_matrix @ omega_matrix))
 
     def to_angle_axis(self) -> tuple[float, np.ndarray]:
         """Compute angle axis representation from self."""
@@ -136,13 +133,11 @@ class SO3:
 
         final_rot = SO3()
         axes = "xyz"
-        axis_vectors = (np.asarray([1, 0, 0]),
-                        np.asarray([0, 1, 0]),
-                        np.asarray([0, 0, 1]))
+        axis_vectors = (np.asarray([1, 0, 0]), np.asarray([0, 1, 0]), np.asarray([0, 0, 1]))
 
         for angle, axis in zip(angles, seq):
             if axis not in axes:
-                raise ValueError(f"Unknown axis \"{axis}\" in seq:\"{seq}\" (accepting only x, y, z)")
+                raise ValueError(f'Unknown axis "{axis}" in seq:"{seq}" (accepting only x, y, z)')
             final_rot *= SO3.from_angle_axis(angle, axis_vectors[axes.index(axis)])
 
         return final_rot
@@ -159,17 +154,21 @@ class SO3:
                 y_rot = np.arctan2(-self.rot[2, 0], np.sqrt(self.rot[0, 0] ** 2 + self.rot[1, 0] ** 2))
                 z_rot = np.arctan2(self.rot[1, 0], self.rot[0, 0])
             except ValueError:
-                print(f"Couldn't find Euler angles for matrix:\n{self}\n"
-                      f"x_rot = np.arctan2({self.rot[2, 1]}, {self.rot[2, 2]})\n"
-                      f"y_rot = np.arctan2({-self.rot[2, 0]}, {np.sqrt(self.rot[0, 0] ** 2 + self.rot[1, 0] ** 2)})\n"
-                      f"z_rot = np.arctan2({self.rot[1, 0]}, {self.rot[0, 0]})")
+                print(
+                    f"Couldn't find Euler angles for matrix:\n{self}\n"
+                    f"x_rot = np.arctan2({self.rot[2, 1]}, {self.rot[2, 2]})\n"
+                    f"y_rot = np.arctan2({-self.rot[2, 0]}, {np.sqrt(self.rot[0, 0] ** 2 + self.rot[1, 0] ** 2)})\n"
+                    f"z_rot = np.arctan2({self.rot[1, 0]}, {self.rot[0, 0]})"
+                )
                 x_rot, y_rot, z_rot = 0, 0, 0
             except TypeError:  # usually caused by complex valued rotation matrix
                 # (imaginary parts are zero so just taking the real part is fine)
-                print(f"Couldn't find Euler angles for matrix:\n{self}\n"
-                      f"x_rot = np.arctan2({self.rot[2, 1]}, {self.rot[2, 2]})\n"
-                      f"y_rot = np.arctan2({-self.rot[2, 0]}, {np.sqrt(self.rot[0, 0] ** 2 + self.rot[1, 0] ** 2)})\n"
-                      f"z_rot = np.arctan2({self.rot[1, 0]}, {self.rot[0, 0]})")
+                print(
+                    f"Couldn't find Euler angles for matrix:\n{self}\n"
+                    f"x_rot = np.arctan2({self.rot[2, 1]}, {self.rot[2, 2]})\n"
+                    f"y_rot = np.arctan2({-self.rot[2, 0]}, {np.sqrt(self.rot[0, 0] ** 2 + self.rot[1, 0] ** 2)})\n"
+                    f"z_rot = np.arctan2({self.rot[1, 0]}, {self.rot[0, 0]})"
+                )
                 x_rot, y_rot, z_rot = 0, 0, 0
 
         return np.asarray([z_rot, y_rot, x_rot])

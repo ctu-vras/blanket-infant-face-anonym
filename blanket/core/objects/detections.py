@@ -17,7 +17,7 @@ class FaceDetection:
 
     left_top_right_bottom: np.ndarray  # [left, top, right, bottom], int32
     confidence: Optional[float] = None
-    landmarks: Optional[FacialLandmarksDetection] = None
+    facial_landmarks_detection: Optional[FacialLandmarksDetection] = None
 
     def __post_init__(self):
         """
@@ -143,9 +143,9 @@ class FaceDetection:
         Returns:
             np.ndarray: Binary mask
         """
-        if self.landmarks is None:
+        if self.facial_landmarks_detection is None:
             raise ValueError("Cannot create mask without landmarks")
-        return self.landmarks.convex_hull_binary_mask(image_shape)
+        return self.facial_landmarks_detection.convex_hull_binary_mask(image_shape)
 
     def __str__(self):
         """String representation of FaceDetection."""

@@ -25,7 +25,7 @@ Your class should inherit from the correct base class:
 ```python
 import numpy as np
 from blanket.core.objects.detections import FaceDetection
-from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.individual_module_settings.face_detector_settings import FaceDetectorSettings
 from blanket.core.detectors.base_detectors import BaseFaceDetector
 
 
@@ -46,7 +46,8 @@ class MyNewFaceDetector(BaseFaceDetector):
 ```python
 import numpy as np
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.module_settings.facial_landmarks_detector_settings import FacialLandmarksDetectorSettings
+from blanket.settings.individual_module_settings.facial_landmarks_detector_settings import
+    FacialLandmarksDetectorSettings
 from blanket.core.detectors.base_detectors import BaseFacialLandmarksDetector
 
 

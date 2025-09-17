@@ -1,6 +1,6 @@
-anonymization_padding_method: PaddingMethod = "ratio"
-anonymization_padding_ratio: float = 0.75
-anonymization_padding_constant: int = 96
+anonymization_padding_method: "ratio"
+anonymization_padding_ratio: 0.75
+anonymization_padding_constant: 96
 payload:
   prompt: "(photo of a little baby face: 1.2)"  # (Daryl Sabara: 0.2), (Macaulay Culkin: 0.1), (Thomas Sangster: 0.1), (Kelly Macdonald: 0.1), (Taylor Swift: 0.2), (Sydney Sweeney: 0.2)
   negative_prompt: "(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, painting, black and white, bubble gum, face mask), text, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck"

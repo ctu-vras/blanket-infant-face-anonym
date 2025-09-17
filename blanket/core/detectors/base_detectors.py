@@ -2,12 +2,11 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-# from dataclasses import dataclass
 import numpy as np
 
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
-from blanket.settings.module_settings.facial_landmarks_detector_settings import (
+from blanket.settings.individual_module_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.individual_module_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings,
 )
 

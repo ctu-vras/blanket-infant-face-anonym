@@ -6,8 +6,8 @@ from blanket.constants.paths import FACE_DETECTOR_PARAMETERS_FOLDER, FACIAL_LAND
 from blanket.constants.enums.detection_enums import FaceDetectorModule, FacialLandmarksDetectorModule
 from blanket.core.detectors.base_detectors import BaseFaceDetector, BaseFacialLandmarksDetector
 from blanket.core.config_loader import create_settings_with_extras_from_config_file
-from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
-from blanket.settings.module_settings.facial_landmarks_detector_settings import (
+from blanket.settings.individual_module_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.individual_module_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings,
 )
 

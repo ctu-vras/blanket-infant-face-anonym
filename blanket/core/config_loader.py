@@ -4,12 +4,6 @@ from typing import Type, TypeVar
 
 import yaml
 
-from blanket.settings.anonymization_settings import AnonymizationSettings
-from blanket.settings.evaluation_settings import EvaluationSettings
-from blanket.settings.input_settings import InputSettings
-from blanket.settings.logging_settings import LoggingSettings
-from blanket.settings.main_settings import MainSettings
-from blanket.settings.module_settings import ModuleSettings
 
 # T = TypeVar("T", bound=BaseSettings)  # with all settings classes inheriting from class BaseSettings(ABC)
 T = TypeVar("T")

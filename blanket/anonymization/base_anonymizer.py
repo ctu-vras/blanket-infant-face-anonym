@@ -4,7 +4,7 @@ from pathlib import Path
 from abc import ABC, abstractmethod
 import cv2
 
-from blanket.settings.module_settings.anonymizer_settings import AnonymizerSettings
+from blanket.settings.individual_module_settings.anonymizer_settings import AnonymizerSettings
 from blanket.core.objects.primitives import ImagePrimitive, VideoPrimitive
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
 

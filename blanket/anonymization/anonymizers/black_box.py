@@ -1,5 +1,8 @@
+from typing import List, Optional
 import cv2
 
+from blanket.core.objects.primitives import ImagePrimitive, VideoPrimitive
+from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
 from blanket.anonymization.base_anonymizer import BaseAnonymizer
 
 
@@ -7,7 +10,14 @@ class BlackBoxAnonymizer(BaseAnonymizer):
     requires_face_detections = True
     requires_facial_landmarks_detections = False
 
-    def anonymize_image(self, input_image: ImagePrimitive) -> ImagePrimitive:
+    def anonymize_image(
+            self,
+            input_image: ImagePrimitive,
+            face_detections: Optional[List[FaceDetection]] = None,
+            facial_landmarks_detection: Optional[List[FacialLandmarksDetection]] = None,
+            conditioning: Optional[AnonymizationConditioning] = None
+    ) -> ImagePrimitive:
+    # def anonymize_image(self, input_image: ImagePrimitive) -> ImagePrimitive:
         """
         Draws a black rectangle over each detected face in the image.
         Args:

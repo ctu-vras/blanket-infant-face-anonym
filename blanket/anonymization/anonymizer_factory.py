@@ -5,7 +5,7 @@ from typing import Type, Optional
 from blanket.constants.paths import ANONYMIZER_PARAMETERS_FOLDER
 from blanket.constants.enums.anonymization_enums import AnonymizationMethod
 from blanket.anonymization.base_anonymizer import BaseAnonymizer
-from blanket.settings.module_settings.anonymizer_settings import AnonymizerSettings
+from blanket.settings.individual_module_settings.anonymizer_settings import AnonymizerSettings
 from blanket.core.config_loader import create_settings_with_extras_from_config_file
 
 from blanket.anonymization.anonymizers.black_box import BlackBoxAnonymizer

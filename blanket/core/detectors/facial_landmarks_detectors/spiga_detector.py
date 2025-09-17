@@ -6,7 +6,7 @@ import numpy as np
 from blanket.core.detectors.base_detectors import BaseFacialLandmarksDetector
 from blanket.core.geometry import SO3
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.module_settings.facial_landmarks_detector_settings import (
+from blanket.settings.individual_module_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings,
 )
 

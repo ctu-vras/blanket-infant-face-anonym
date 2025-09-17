@@ -5,7 +5,7 @@ import numpy as np
 import ultralytics
 from blanket.core.detectors.base_detectors import BaseFaceDetector
 from blanket.core.objects.detections import FaceDetection
-from blanket.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
 
 
 class YOLOFaceDetector(BaseFaceDetector):

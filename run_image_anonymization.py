@@ -4,27 +4,33 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from blanket.anonymization.methods.black_box import BlackBoxAnonymizer
-from blanket.anonymization.methods.gaussian_blur import GaussianBlurAnonymizer
-from blanket.anonymization.methods.pixelation import PixelationAnonymizer
-from blanket.constants.enums.detection_enums import FaceDetectorModule
-from blanket.core.detectors.detector_factory import DetectorFactory
+from blanket.constants.paths import CONFIG_FOLDER
 from blanket.settings.main_settings import MainSettings
+from blanket.core.logging_setup import setup_loggers
+# from blanket.anonymization.anonymizers.black_box import BlackBoxAnonymizer
+# from blanket.anonymization.anonymizers.gaussian_blur import GaussianBlurAnonymizer
+# from blanket.anonymization.anonymizers.pixelation import PixelationAnonymizer
+# from blanket.constants.enums.detection_enums import FaceDetectorModule
+# from blanket.core.detectors.detector_factory import DetectorFactory
 
-# Load consolidated config
-CONFIG_DIR = Path(os.path.join(os.path.dirname(__file__), "blanket", "configs"))
-main_settings = MainSettings.from_configs(CONFIG_DIR / "config.yaml", CONFIG_DIR / "defaults.yaml")
 
-input_folder = main_settings.input_folder
-output_folder = Path(main_settings.output_folder)
+# basic setup
+MainSettings.configure(CONFIG_FOLDER / "config.yaml")
+setup_loggers(MainSettings.get().logging_settings)
+
+
+
+
+input_folder = MainSettings.get().input_settings.input_folder
+output_folder = Path(MainSettings.get().input_settings.output_folder)
 os.makedirs(output_folder, exist_ok=True)
 
 # Instantiate detectors
-face_detector = DetectorFactory.create_face_detector(FaceDetectorModule(main_settings.face_detector_type))
-
-black_box = BlackBoxAnonymizer()
-pixelation = PixelationAnonymizer()
-gaussian_blur = GaussianBlurAnonymizer()
+# face_detector = DetectorFactory.create_face_detector(FaceDetectorModule(main_settings.face_detector_type))
+#
+# black_box = BlackBoxAnonymizer()
+# pixelation = PixelationAnonymizer()
+# gaussian_blur = GaussianBlurAnonymizer()
 
 # Process images in input folder
 

@@ -1,12 +1,17 @@
 import cv2
 
+from blanket.anonymization.base_anonymizer import BaseAnonymizer
 
-class BlackBoxAnonymizer:
-    def anonymize(self, image, detections):
+
+class BlackBoxAnonymizer(BaseAnonymizer):
+    requires_face_detections = True
+    requires_facial_landmarks_detections = False
+
+    def anonymize_image(self, input_image: ImagePrimitive) -> ImagePrimitive:
         """
         Draws a black rectangle over each detected face in the image.
         Args:
-            image (np.ndarray): BGR image.
+            input_image (ImagePrimitive): Image that is to be anonymized.
             detections (list): List of FaceDetection objects.
         Returns:
             np.ndarray: Anonymized image.

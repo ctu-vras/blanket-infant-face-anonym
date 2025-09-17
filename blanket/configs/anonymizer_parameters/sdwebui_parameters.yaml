@@ -1,0 +1,125 @@
+anonymization_padding_method: PaddingMethod = "ratio"
+anonymization_padding_ratio: float = 0.75
+anonymization_padding_constant: int = 96
+payload:
+  prompt: "(photo of a little baby face: 1.2)"  # (Daryl Sabara: 0.2), (Macaulay Culkin: 0.1), (Thomas Sangster: 0.1), (Kelly Macdonald: 0.1), (Taylor Swift: 0.2), (Sydney Sweeney: 0.2)
+  negative_prompt: "(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, painting, black and white, bubble gum, face mask), text, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck"
+  steps: 30
+  width: 896
+  height: 896
+  resize_mode: 0
+  sampler_name: "DPM++ SDE Karras"
+  cfg_scale: 4
+  initial_noise_multiplier: 1
+  denoising_strength: 0.7
+  n_iter: 1
+#  init_images:  # TODO - add image in anonymizer
+#    - image_byte64
+  batch_size: 1
+#  mask: mask_byte64  # TODO - add mask in anonymizer
+  mask_blur: 4  # mask blur shouldn't be too high because then the new image doesn't fit with the old one, and it is visible when blended together
+  mask_mode: 1  # 'Inpaint masked', 'Inpaint not masked'
+  inpainting_fill: 1  # 'fill', 'original', 'latent noise', 'latent nothing'
+  inpaint_full_res: 1  # 'Whole picture', 'Only masked'
+#  inpaint_full_res_padding: padding  # TODO - add padding in anonymizer
+  inpainting_mask_invert: 0
+  override_settings:
+    sd_model_checkpoint: "RealisticVisionV20.safetensors"  # this can be used to switch SD model
+  seed: 1
+  subseed: -1
+  subseed_strength: 0
+  seed_enable_extras: true
+  seed_resize_from_h: -1
+  seed_resize_from_w: -1
+  tiling: false
+  styles: [ ]
+  restore_faces: false
+  script_args: [ ]
+  script_name: null
+  refiner_switch_at: 0.4  # (0.0; 1.0)
+  alwayson_scripts:
+    API payload:
+      args: [ ]
+    CodeFormer:
+      args:
+        - 0
+        - 0
+    ControlNet:
+      args:
+        # ControlNet OpenPose
+        - advanced_weighting: null
+          batch_images: ""
+          control_mode: "ControlNet is more important"
+          enabled: true
+          guidance_end: 1  # at which part of the generation does controlnet stop affecting the output
+          guidance_start: 0  # at which part of the generation does controlnet start affecting the output
+          hr_option: "Both"
+          image: null
+          inpaint_crop_input_image: true
+          input_mode: "simple"
+          is_ui: true
+          loopback: false
+          low_vram: false
+          model: "control_v11p_sd15_openpose"
+          module: "openpose_full"
+          output_dir: ""
+          pixel_perfect: true
+          processor_res: 896
+          resize_mode: "Just Resize"
+          save_detected_map: true
+          threshold_a: -1
+          threshold_b: -1
+          weight: 1
+        # ControlNet Canny
+        - advanced_weighting: null
+          batch_images: ""
+          control_mode: "ControlNet is more important"
+          enabled: true
+          guidance_end: 1  # at which part of the generation does controlnet stop affecting the output
+          guidance_start: 0  # at which part of the generation does controlnet start affecting the output
+          hr_option: "Both"
+          image: null
+          inpaint_crop_input_image: true
+          input_mode: "simple"
+          is_ui: true
+          loopback: false
+          low_vram: false
+          model: "control_v11p_sd15_canny"
+          module: "canny"
+          output_dir: ""
+          pixel_perfect: true
+          processor_res: 896
+          resize_mode: "Just Resize"
+          save_detected_map: true
+          threshold_a: 239  # default 100
+          threshold_b: 255  # default 200
+          weight: 2  # from 0 to 2
+        # download other models: https://huggingface.co/lllyasviel/ControlNet-v1-1/tree/main
+    Extra options:
+      args: [ ]
+    GFPGAN:
+      args:
+        - 0
+    Refiner:
+      args:
+        - true
+        - "RealisticVisionV60B1.safetensors"
+        - 0.4
+    Seed:
+      args:
+        - -1
+        - false
+        - -1
+        - 0
+        - 0
+        - 0
+  comments: { }
+  disable_extra_networks: false
+  image_cfg_scale: 1.5
+  refiner_checkpoint: "RealisticVisionV60B1.safetensors"
+  s_churn: 0.0
+  s_min_uncond: 0.0
+  s_noise: 1.0
+  s_tmax: null
+  s_tmin: 0.0
+  

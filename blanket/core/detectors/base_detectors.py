@@ -6,8 +6,8 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
-from blanket.settings.individual_modules_settings.facial_landmarks_detector_settings import (
+from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.module_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings,
 )
 

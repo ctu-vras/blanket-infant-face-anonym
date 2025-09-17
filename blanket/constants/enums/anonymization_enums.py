@@ -3,7 +3,7 @@ from enum import Enum
 
 class AnonymizationMethod(str, Enum):
     BLACK_BOX = "black_box"
-    GAUSSIAN = "gaussian_blur"
+    GAUSSIAN_BLUR = "gaussian_blur"
     PIXELATION = "pixelation"
     STABLE_DIFFUSION = "stable_diffusion"
     FACEFUSION = "facefusion"

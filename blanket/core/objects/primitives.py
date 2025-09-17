@@ -92,6 +92,9 @@ class ImagePrimitive:
         image_bgr = cv2.imread(str(path))
         return ImagePrimitive.from_not_rotated_image(image_bgr, clockwise_rotation_index, path)
 
+    def to_not_rotated_image(self) -> ImagePrimitive:
+        return ImagePrimitive(self.rotate_image(self.image_bgr, -self.clockwise_rotation_index), 0)
+
     @property
     def image_rgb(self) -> np.ndarray:
         """

@@ -21,17 +21,19 @@ Extend the detectors folder `code/source/core/detectors/...` with your detector 
 Your class should inherit from the correct base class:
 
 #### Face Detector Example
+
 ```python
 import numpy as np
 from blanket.core.objects.detections import FaceDetection
-from blanket.settings.individual_modules_settings.face_detector_settings import FaceDetectorSettings
+from blanket.settings.module_settings.face_detector_settings import FaceDetectorSettings
 from blanket.core.detectors.base_detectors import BaseFaceDetector
+
 
 class MyNewFaceDetector(BaseFaceDetector):
     def __init__(self, settings: FaceDetectorSettings):
         super().__init__(settings)
         # ...
-    
+
     def detect(self, image_bgr: np.ndarray) -> list[FaceDetection]:
         # implement face detection logic
         detections: list[FaceDetection] = []
@@ -40,17 +42,19 @@ class MyNewFaceDetector(BaseFaceDetector):
 ```
 
 #### Facial Landmarks Detector Example
+
 ```python
 import numpy as np
 from blanket.core.objects.detections import FaceDetection, FacialLandmarksDetection
-from blanket.settings.individual_modules_settings.facial_landmarks_detector_settings import FacialLandmarksDetectorSettings 
+from blanket.settings.module_settings.facial_landmarks_detector_settings import FacialLandmarksDetectorSettings
 from blanket.core.detectors.base_detectors import BaseFacialLandmarksDetector
+
 
 class MyNewLandmarksDetector(BaseFacialLandmarksDetector):
     def __init__(self, settings: FacialLandmarksDetectorSettings):
         super().__init__(settings)
         # ...
-    
+
     def detect(self, image_bgr: np.ndarray, face_detection: FaceDetection) -> FacialLandmarksDetection:
         # implement landmarks detection logic
         landmarks: FacialLandmarksDetection = ...

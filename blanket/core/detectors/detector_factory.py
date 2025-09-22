@@ -30,6 +30,7 @@ facial_landmarks_detector_registry: dict[
 }
 
 
+# TODO - add some check if all dependencies for the currently created detector are installed
 class DetectorFactory:
     @staticmethod
     def create_face_detector(module: FaceDetectorModule) -> BaseFaceDetector:

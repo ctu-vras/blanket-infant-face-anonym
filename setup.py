@@ -7,6 +7,9 @@ setup(
     author="Ditmar Hadera, Jan Cech, Miroslav Purkrabek, Matej Hoffmann",
     packages=find_packages(include=["blanket*"]),
     install_requires=["torch>=1.12", "ultralytics", "numpy", "opencv-python", "pyyaml"],
+    extras_require={
+        "spiga": ["git+https://github.com/andresprados/SPIGA.git@a709c95cc93f8246d7bff4cfb970a2dd0d62ffed#egg=spiga"],
+    },
     python_requires=">=3.9",
     include_package_data=True,
     package_data={

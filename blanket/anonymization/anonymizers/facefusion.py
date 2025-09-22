@@ -13,20 +13,21 @@ class FacefusionAnonymizer(BaseAnonymizer):
             input_image: ImagePrimitive,
             face_detections: Optional[List[FaceDetection]] = None,
             facial_landmarks_detection: Optional[List[FacialLandmarksDetection]] = None,
-            conditioning: Optional[AnonymizationConditioning] = None
+            # conditioning: Optional[AnonymizationConditioning] = None
     ) -> ImagePrimitive:
-    # def anonymize_image(self, image, detections):
         """
         Placeholder for Facefusion anonymization method.
         Args:
-            image (np.ndarray): BGR image.
-            detections (list): List of FaceDetection objects.
-        Raises:
-            NotImplementedError: Always, as not implemented yet.
+            input_image (ImagePrimitive): Image that is to be anonymized.
+            face_detections (List[FaceDetection]): List of FaceDetection objects.
+        Returns:
+            ImagePrimitive: Anonymized image.
         """
         raise NotImplementedError("Facefusion image anonymization not implemented yet.")
 
     def anonymize_video(self, input_video: VideoPrimitive, input_image: ImagePrimitive, output_path: Path) -> VideoPrimitive:
+        raise NotImplementedError("Facefusion video anonymization not implemented yet.")
+
         # define command arguments for the running of facefusion using the subprocess module
         # TODO - move these into parameters
         facefusion_script = "facefusion.py"

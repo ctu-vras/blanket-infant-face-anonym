@@ -18,7 +18,7 @@ def setup_loggers(settings: LoggingSettings) -> dict[str, logging.Logger]:
 
         _add_console_handler_to_logger(process_logger, settings.process_console_log_level)
         # TODO - check that the path is interpreted correctly
-        _add_file_handler_to_logger(process_logger, settings.process_log_filepath, settings.process_file_log_level)
+        _add_file_handler_to_logger(process_logger, Path(settings.process_log_filepath), settings.process_file_log_level)
 
         process_logger.propagate = False
         loggers[PROCESS_LOGGER_NAME] = process_logger
@@ -30,7 +30,7 @@ def setup_loggers(settings: LoggingSettings) -> dict[str, logging.Logger]:
         if not anonymization_result_logger.handlers:
             anonymization_result_logger.setLevel(logging.DEBUG)
             _add_file_handler_to_logger(anonymization_result_logger,
-                                        settings.anonymization_result_log_filepath, "INFO", "%(message)s")
+                                        Path(settings.anonymization_result_log_filepath), "INFO", "%(message)s")
 
             anonymization_result_logger.propagate = False
 
@@ -43,7 +43,7 @@ def setup_loggers(settings: LoggingSettings) -> dict[str, logging.Logger]:
         if not frames_without_detections_logger.handlers:
             frames_without_detections_logger.setLevel(logging.DEBUG)
             _add_file_handler_to_logger(frames_without_detections_logger,
-                                        settings.frames_without_detections_log_filepath, "INFO", "%(message)s")
+                                        Path(settings.frames_without_detections_log_filepath), "INFO", "%(message)s")
             frames_without_detections_logger.propagate = False
 
         loggers[FRAMES_WITHOUT_DETECTIONS_LOGGER_NAME] = frames_without_detections_logger

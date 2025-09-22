@@ -16,16 +16,18 @@ class StableDiffusionAnonymizer(BaseAnonymizer):
             input_image: ImagePrimitive,
             face_detections: Optional[List[FaceDetection]] = None,
             facial_landmarks_detection: Optional[List[FacialLandmarksDetection]] = None,
-            conditioning: Optional[AnonymizationConditioning] = None
+            # conditioning: Optional[AnonymizationConditioning] = None
     ) -> ImagePrimitive:
         """
         Placeholder for Stable Diffusion anonymization method.
         Args:
-            image (np.ndarray): BGR image.
-            detections (list): List of FaceDetection objects.
+            input_image (ImagePrimitive): Image that is to be anonymized.
+            face_detections (List[FaceDetection]): List of FaceDetection objects.
         Raises:
             NotImplementedError: Always, as not implemented yet.
         """
+
+        raise NotImplementedError("StableDiffusion image anonymization not implemented yet.")
 
         # # skipping current image because no faces were detected or using fallback detections from the conditioning
         # if len(detections) == 0:

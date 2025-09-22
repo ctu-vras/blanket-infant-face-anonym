@@ -12,7 +12,11 @@ T = TypeVar("T")
 def config_file_to_dictionary(config_filepath: Path) -> dict:
     with open(config_filepath, "r") as config_file:
         config_dict = yaml.safe_load(config_file)
-    return config_dict
+
+    if config_dict is not None:
+        return config_dict
+    else:
+        return {}
 
 
 def create_settings_from_config_file(config_filepath: Path, settings_class: Type[T]) -> T:
@@ -36,6 +40,7 @@ def create_settings_with_extras_from_config_file(config_filepath: Path, settings
     Returns:
         T: Instance of settings_class with loaded values and extras.
     """
+    # TODO - check that config file exists
     config_dict = config_file_to_dictionary(config_filepath)
 
     field_names = {field.name for field in fields(settings_class)}

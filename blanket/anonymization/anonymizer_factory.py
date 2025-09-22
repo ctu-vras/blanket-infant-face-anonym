@@ -24,7 +24,7 @@ anonymizer_registry: dict[AnonymizationMethod, tuple[Type[BaseAnonymizer], Path]
     AnonymizationMethod.STABLE_DIFFUSION: (StableDiffusionAnonymizer, Path("sdwebui_parameters.yaml")),
     AnonymizationMethod.FACEFUSION: (FacefusionAnonymizer, Path("facefusion_parameters.yaml")),
     AnonymizationMethod.STABLE_DIFFUSION_CONDITIONED_FACEFUSION: (
-        StableDiffusionConditionedFacefusionAnonymizer, Path("sdwebui_conditioned_facefusion_parameters.yaml"))
+        StableDiffusionConditionedFacefusionAnonymizer, Path("stable_diffusion_conditioned_facefusion_parameters.yaml"))
 }
 
 

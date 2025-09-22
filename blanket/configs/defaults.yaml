@@ -21,6 +21,7 @@ metrics:
   - detection_accuracy
 
 # Module defaults
-identity_encoder_name: "arcface"
 face_detector_name: "yolo"
 facial_landmarks_detector_name: "spiga"
+anonymizer_name: "black_box"
+identity_encoder_name: "arcface"

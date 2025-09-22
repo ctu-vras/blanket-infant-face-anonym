@@ -19,8 +19,8 @@ anonymization_settings:
 evaluation_settings:
 #  evaluate_redetections: true
 #  evaluate_identity_switches: true
-#  max_evaluated_frames: 500
-#  evaluation_skipped_frames: 0
+  max_evaluated_frames: 500
+  evaluation_skipped_frames: 0
 #  metrics:
 #    - identity_consistency
 #    - detection_accuracy

@@ -22,13 +22,13 @@ class BaseAnonymizer(ABC):
             input_image: ImagePrimitive,
             face_detections: Optional[List[FaceDetection]] = None,
             facial_landmarks_detection: Optional[List[FacialLandmarksDetection]] = None,
-            conditioning: Optional[AnonymizationConditioning] = None
+            # conditioning: Optional[AnonymizationConditioning] = None
     ) -> ImagePrimitive:
         """
         Anonymize a single image (frame).
         Frame-by-frame anonymizers must implement this.
         """
-        pass
+        raise NotImplementedError(f"Method anonymize_image() has not been implemented for the anonymizer {type(self)}")
 
     def anonymize_video(self, input_video: VideoPrimitive, output_path: Path) -> VideoPrimitive:
         """

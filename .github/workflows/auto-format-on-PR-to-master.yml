@@ -39,11 +39,11 @@ jobs:
       # Same-repo PRs: format in-place and push changes as github-actions[bot]
       - name: Run isort (same-repo PRs)
         if: ${{ github.event.pull_request.head.repo.fork == false }}
-        run: isort -rc black .
+        run: isort .
 
       - name: Run Black (same-repo PRs)
         if: ${{ github.event.pull_request.head.repo.fork == false }}
-        run: black -t py311 -l 120 .
+        run: black --target-version py311 -l 120 .
 
       - name: Commit and push formatting changes (same-repo PRs)
         if: ${{ github.event.pull_request.head.repo.fork == false }}

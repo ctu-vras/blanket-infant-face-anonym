@@ -1,0 +1,61 @@
+name: Auto-format Python (Black + iSort) on PRs to master
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: format-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    if: ${{ github.event.pull_request.draft == false }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install formatters
+        run: |
+          python -m pip install --upgrade pip
+          pip install "black==24.*" "isort==5.*"
+
+      # Same-repo PRs: format in-place and push changes as github-actions[bot]
+      - name: Run isort (same-repo PRs)
+        if: ${{ github.event.pull_request.head.repo.fork == false }}
+        run: isort .
+
+      - name: Run Black (same-repo PRs)
+        if: ${{ github.event.pull_request.head.repo.fork == false }}
+        run: black --target-version py311 -l 120 .
+
+      - name: Commit and push formatting changes (same-repo PRs)
+        if: ${{ github.event.pull_request.head.repo.fork == false }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No formatting changes to commit."
+          else
+            git commit -m "style: auto-format with Black and isort"
+            # Push back to the PR head branch
+            git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+          fi

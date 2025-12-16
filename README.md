@@ -52,13 +52,26 @@ To install BLANKET and its dependencies:
 ```bash
 git clone https://github.com/ctu-vras/blanket-infant-face-anonym.git
 cd blanket-infant-face-anonym
-pip install -r requirements.txt
-pip install .
+# Install dependencies using pyproject.toml
+pip install -e .
+# if using uv
+uv sync
 ```
-
+**GPU acceleration**
+- **macOS (Apple Silicon)**: Uses CoreML by default for GPU acceleration
+- **NVIDIA GPU**: Requires cuDNN(https://developer.nvidia.com/cudnn) to be installed for onnxruntime-gpu support
+  - on Ubuntu can be installed via `apt install cudnn`
+  
 **Pre-trained models**
 
 * YOLOv11L-face - [download from Ultralytics](https://github.com/YapaLab/yolo-face/releases/download/v0.0.0/yolov11l-face.pt)
+* Stable Diffusion XL Inpainting 
+* ControlNet OpenPose
+* ControlNet Canny
+* SDXL Refiner
+* SPIGA Landmarks
+* inswapper_128_fp16
+* GFPGAN
 
 
 ## 🎮 Demo
@@ -71,7 +84,17 @@ To run the image anonymization demo:
 2. Run the demo script:
 
 ```bash
-python run_image_anonymization.py
+python run_video.py data/000056_segment.mp4
+#if using uv
+uv run python run_video.py data/000056_segment.mp4
+# or 
+source .venv/bin/activate
+python run_video.py data/000056_segment.mp4 
+
+```
+ To use existing identity run:
+```
+uv run python run_video.py data/000071_segment.mp4 --identity ./data/baby4.png
 ```
 
 This will process all images in your input folder, apply face detection and three anonymization methods (black box, pixelation, gaussian blur), and save composite results to your output folder.
@@ -121,4 +144,12 @@ If you use BLANKET, please cite:
   year = {2025}
 }
 ```
+ ## Third-Party Dependencies
+
+ ### FaceFusion
+  - **Repository**: https://github.com/facefusion/facefusion
+  - **License**: OpenRAIL-AS (Open Responsible AI License)
+  - **Copyright**: (c) 2025 Henry Ruhs
+  - **Location**: `external/facefusion/`
+  - **Usage**: Face swapping and enhancement functionality
 

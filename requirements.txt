@@ -1,5 +1,33 @@
-torch>=1.12
-ultralytics
-numpy
-opencv-python
-pyyaml
+# Human-readable list of Blanket's direct runtime dependencies.
+# For a locked, fully resolved set pinning every transitive library, see `requirements_exact.txt`.
+
+# Core ML runtimes
+torch>=2.0.0
+torchvision>=0.15.0
+diffusers>=0.25.0
+transformers>=4.35.0
+accelerate>=0.25.0
+controlnet-aux>=0.0.7
+ultralytics>=8.0.0
+spiga @ git+https://github.com/andresprados/SPIGA.git@656f90a76a6800e6091bbce519550e86e04cf17f
+
+# Vision and numerics
+numpy>=1.24.0,<3.0
+scipy>=1.10.0
+pillow>=10.0.0
+opencv-python>=4.8.0
+ml-dtypes>=0.5.0
+tqdm>=4.65.0
+
+# Face anonymization stack
+deepface>=0.0.96
+onnx>=1.16.0
+onnxruntime-gpu>=1.16.0 ; sys_platform == "linux"
+onnxruntime>=1.16.0 ; sys_platform != "linux"
+pyyaml>=6.0
+setuptools>=65.0.0
+
+# FaceFusion UI helpers
+gradio>=5.44.1
+gradio-rangeslider>=0.0.8
+psutil>=5.9.0

@@ -11,8 +11,7 @@ from blanket.settings.individual_modules_settings.face_detector_settings import 
 from blanket.settings.individual_modules_settings.facial_landmarks_detector_settings import (
     FacialLandmarksDetectorSettings,
 )
-
-# from blanket.core.detectors.facial_landmarks_detectors.spiga_detector import SPIGAFacialLandmarksDetector
+from blanket.core.detectors.facial_landmarks_detectors.spiga_detector import SPIGAFacialLandmarksDetector
 
 
 face_detector_parameters_folder = Path("blanket/configs/detector_parameters/face_detector_parameters")
@@ -30,8 +29,7 @@ facial_landmarks_detector_parameters_folder = Path(
 facial_landmarks_detector_registry: dict[
     FacialLandmarksDetectorModule, tuple[Type[BaseFacialLandmarksDetector], Path]
 ] = {
-    # FacialLandmarksDetectorModule.SPIGA: (SPIGAFacialLandmarksDetector, Path("spiga_parameters.yaml")),
-    # ... additional facial landmarks detectors
+    FacialLandmarksDetectorModule.SPIGA: (SPIGAFacialLandmarksDetector, Path("spiga_parameters.yaml")),
 }
 
 

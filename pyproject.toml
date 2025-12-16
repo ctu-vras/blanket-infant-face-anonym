@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blanket"
+version = "0.1.0"
+description = "BLANKET: Anonymizing Faces in Infant Video Recordings"
+authors = [
+    {name = "Ditmar Hadera"},       # Author of the BLANKET paper
+    {name = "Dominik Nguyen"},      # Code development
+    {name = "Jan Cech"},            # Author of the BLANKET paper
+    {name = "Miroslav Purkrabek"},  # Author of the BLANKET paper and code reviews
+    {name = "Matej Hoffmann"},      # Author of the BLANKET paper
+]
+requires-python = ">=3.9"
+license = {text = "GPL-3.0"}
+dependencies = [
+    # Core ML frameworks
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    # Stable Diffusion
+    "diffusers>=0.25.0",
+    "transformers>=4.35.0",
+    "accelerate>=0.25.0",
+    # Image processing
+    "pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0,<3.0",
+    # ControlNet preprocessing
+    "controlnet-aux>=0.0.7",
+    # Face detection/tracking
+    "ultralytics>=8.0.0",
+    "spiga @ git+https://github.com/andresprados/SPIGA.git",
+    "setuptools>=65.0.0",
+    # FaceFusion dependencies
+    "onnx>=1.16.0",
+    "onnxruntime-gpu>=1.16.0; sys_platform == 'linux'",
+    "onnxruntime>=1.16.0; sys_platform != 'linux'",
+    "ml-dtypes>=0.5.0",
+    "tqdm>=4.65.0",
+    "scipy>=1.10.0",
+    # Configuration
+    "pyyaml>=6.0",
+    "deepface>=0.0.96",
+]
+
+[project.scripts]
+blanket-run-image = "run_image_anonymization:main"
+
+[tool.setuptools]
+packages = ["blanket"]
+
+[tool.setuptools.package-data]
+blanket = [
+    "configs/*.yaml",
+    "configs/defaults.yaml",
+    "configs/config.yaml",
+    "configs/detector_parameters/face_detector_parameters/*.yaml",
+    "configs/detector_parameters/facial_landmarks_detector_parameters/*.yaml",
+    "configs/module_parameters/*.yaml",
+    "configs/module_parameters/*.json",
+]

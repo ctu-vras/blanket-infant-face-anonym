@@ -10,8 +10,8 @@ from blanket.settings.individual_modules_settings.facial_landmarks_detector_sett
     FacialLandmarksDetectorSettings,
 )
 
-# from SPIGA.spiga.inference.config import ModelConfig
-# from SPIGA.spiga.inference.framework import SPIGAFramework
+from spiga.inference.config import ModelConfig
+from spiga.inference.framework import SPIGAFramework
 
 
 class SPIGAFacialLandmarksDetector(BaseFacialLandmarksDetector):
@@ -23,7 +23,19 @@ class SPIGAFacialLandmarksDetector(BaseFacialLandmarksDetector):
         """
         super().__init__(settings)
 
-        self._processor = SPIGAFramework(self.settings.model_name)
+        import torch
+
+        model_cfg = ModelConfig(self.settings.model_name)
+
+        # hack for devices without cuda
+        self.is_cpu_only = not torch.cuda.is_available()
+        if self.is_cpu_only:
+            self._original_tensor_cuda = torch.Tensor.cuda
+            self._original_module_cuda = torch.nn.Module.cuda
+            torch.Tensor.cuda = lambda self, *args, **kwargs: self
+            torch.nn.Module.cuda = lambda self, *args, **kwargs: self
+
+        self._processor = SPIGAFramework(model_cfg, gpus=[0])
 
     def detect(self, image_bgr: np.ndarray, face_detection: FaceDetection) -> FacialLandmarksDetection:
         """

@@ -1,0 +1,46 @@
+model_id: diffusers/stable-diffusion-xl-1.0-inpainting-0.1
+prompt: high quality photo of a baby face, realistic, natural lighting, clear features,
+  natural skin tone, soft features, no makeup
+negative_prompt: '(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render,
+  sketch, cartoon, drawing, anime, painting, black and white, bubble gum, face mask),
+  text, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate,
+  morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn
+  face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra
+  limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms,
+  missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck,
+  distorted, warped, stretched, squished, asymmetric face, makeup, lipstick, eye shadow,
+  dark lips, cosmetics, heavy shadows, over-saturated
+
+  '
+# Config 18: Balanced weights with good visual results
+steps: 30
+cfg_scale: 6.5
+denoising_strength: 0.6
+scheduler: DPMSolverMultistepScheduler
+width: 896
+height: 896
+mask_blur: 8
+padding: 96
+seed: 1
+use_refiner: true
+refiner_switch_at: 0.4
+refiner_model: stabilityai/stable-diffusion-xl-refiner-1.0
+
+# Post-processing for color blending
+use_poisson_blending: true
+poisson_blend_mode: NORMAL  # NORMAL or MIXED
+
+use_controlnet: true
+controlnet_models:
+- model: xinsir/controlnet-openpose-sdxl-1.0
+  type: openpose
+  weight: 1.0
+  guidance_start: 0.0
+  guidance_end: 1.0
+- model: diffusers/controlnet-canny-sdxl-1.0
+  type: canny
+  weight: 1.0
+  guidance_start: 0.0
+  guidance_end: 1.0
+  canny_low_threshold: 100
+  canny_high_threshold: 200

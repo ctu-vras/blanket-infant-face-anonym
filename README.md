@@ -120,9 +120,10 @@ BLANKET outperforms DeepPrivacy V2 in all measured metrics.
 
 We will continue refining BLANKET with a focus on quality and reliability:
 
-- [ ] Implement Stable Diffusion–based inpainting 
-- [ ] Implement FaceFusion in video and a video demo  
-- [ ] Ensure robust anonymization in frames where faces are not detected  
+- [x] Implement Stable Diffusion–based inpainting 
+- [x] Implement FaceFusion in video and a video demo  
+- [ ] Ensure robust anonymization in frames where faces are not detected
+  - Partially solved by reusing previous frames -- identity won't leak to anonymized video but artifacts could occur.
 
 ## 🙏 Acknowledgments
 

@@ -174,3 +174,11 @@ cython_debug/
 *.MOV
 *.AVI
 *.MKV
+
+models/huggingface/
+# notes and temp files
+dev_notes/
+!data/000056_segment.mp4
+!data/000056_scene.mp4
+!data/baby4.png
+!data/baby5.png

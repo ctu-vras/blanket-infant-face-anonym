@@ -1,4 +1,29 @@
-model: insightface
-blend_mode: softlight
-use_mask: true
-source_alignment: true
+face_detector_score: 0.5
+face_landmarker_score: 0.5
+max_faces: 1
+
+face_swapper_model: inswapper_128
+
+enable_face_enhancer: true
+face_enhancer_model: gfpgan_1.4
+face_enhancer_blend: 100
+
+enable_expression_restorer: false
+expression_restorer_model: live_portrait
+expression_restorer_factor: 80
+expression_restorer_areas:
+  - upper-face
+  - lower-face
+
+face_mask_blur: 0.7
+
+skip_nsfw: false
+
+iou_filter: true
+iou_threshold: 0.4
+iou_skip_threshold: 10  
+
+execution_providers:
+  - coreml
+  - cuda
+  - cpu

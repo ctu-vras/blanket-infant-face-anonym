@@ -44,6 +44,8 @@ Key contributions:
 
 ## 📢 News
 
+- **Dec 2025**: Cleaner version of the code available
+- **Sep 2025**: Code published
 - **May 2025**: Paper accepted to ICDL 2025! 🎉
 
 ## 🚀 Installation
